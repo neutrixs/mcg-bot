@@ -4,7 +4,7 @@ module.exports = {
     execute(msg,embed,config){
         embed = embed
         .setDescription(
-            `Type \`${config.PREFIX}say [#channelname] your message here [option]\`\n\n`+
+            `**Format**: \`${config.PREFIX}say [#channelname] your message here [option]\`\n\n`+
             `[] = Optional\n\n`
         )
         .addField(
