@@ -18,6 +18,10 @@ module.exports = {
             case 'credit':
                 cmdlist.get('credit').execute(msg,varstore,config)
             break;
+
+            case 'fun':
+                cmdlist.get('fun').execute(msg,varstore,config)
+            break;
             case 'yomama':
             case 'ym':
                 cmdlist.get('ym').execute(msg)
