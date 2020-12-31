@@ -11,7 +11,7 @@ module.exports = {
             './src/fun/',
             './src/fun/help/',
             './src/TMP/',
-            './scr/TMP/help/',
+            './src/TMP/help/',
             './src/help/',
             './src/help/helplist/'
         ]

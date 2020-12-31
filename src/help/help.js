@@ -48,11 +48,28 @@ module.exports = {
                 case 'pin':
                     cmdlist.get('helppin').execute(msg,embed,config)
                 break;
+
+
                 case 'fun':
                     cmdlist.get('fun').execute(msg,varstore,config)
                 break;
+                case 'yomama':
+                case 'ym':
+                    cmdlist.get('helpyomama').execute(msg,embed)
+                break;
+
+
                 case 'tmp':
                     cmdlist.get('tmp').execute(msg,varstore,config)
+                break;
+                case 'tmpstats':
+                    cmdlist.get('helptmpstats').execute(msg,embed)
+                break;
+                case 'tmptime':
+                    cmdlist.get('helptmptime').execute(msg,embed)
+                break;
+                case 'traffic':
+                    cmdlist.get('helptmptraffic').execute(msg,embed,config)
                 break;
             }
         }
