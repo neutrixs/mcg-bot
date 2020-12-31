@@ -27,6 +27,9 @@ module.exports = {
                 case 'del':
                     cmdlist.get('helpdel').execute(msg,embed,config)
                 break;
+                case 'say':
+                    cmdlist.get('helpsay').execute(msg,embed,config)
+                break;
                 case 'fun':
                     cmdlist.get('fun').execute(msg,varstore,config)
                 break;
