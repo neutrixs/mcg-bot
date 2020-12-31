@@ -36,6 +36,18 @@ module.exports = {
                 case 'ann':
                     cmdlist.get('helpann').execute(msg,embed,config)
                 break;
+                case 'file':
+                    cmdlist.get('helpfile').execute(msg,embed,config)
+                break;
+                case 'credit':
+                    cmdlist.get('helpcredit').execute(msg,embed)
+                break;
+                case 'speedtest':
+                    cmdlist.get('helpspeedtest').execute(msg,embed)
+                break;
+                case 'pin':
+                    cmdlist.get('helppin').execute(msg,embed,config)
+                break;
                 case 'fun':
                     cmdlist.get('fun').execute(msg,varstore,config)
                 break;
