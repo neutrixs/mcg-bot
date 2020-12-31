@@ -32,6 +32,10 @@ module.exports = {
             case 'apod':
                 cmdlist.get('nasaapod').execute(msg)
             break;
+
+            case 'tmp':
+                cmdlist.get('tmp').execute(msg,varstore,config)
+            break;
             case 'tmptime':
                 cmdlist.get('tmptime').execute(msg,varstore,bot)
             break;

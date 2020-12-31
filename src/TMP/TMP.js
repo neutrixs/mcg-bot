@@ -4,7 +4,12 @@ module.exports = {
     execute(msg,varstore,config){
         msg.channel.send(
             varstore.embed
-            .setDescription(`type \`${config.PREFIX}tmp\` to show list of TMP commands`)
+            .setTitle('List of TMP Commands:')
+            .setDescription(
+                `\`${config.PREFIX}tmpstats\`\n`+
+                `\`${config.PREFIX}tmptime\`\n`+
+                `\`${config.PREFIX}traffic\`\n`
+            )
         )
     }
 }

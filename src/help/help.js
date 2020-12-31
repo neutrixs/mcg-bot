@@ -27,6 +27,12 @@ module.exports = {
                 case 'del':
                     cmdlist.get('helpdel').execute(msg,embed,config)
                 break;
+                case 'fun':
+                    cmdlist.get('fun').execute(msg,varstore,config)
+                break;
+                case 'tmp':
+                    cmdlist.get('tmp').execute(msg,varstore,config)
+                break;
             }
         }
     }
