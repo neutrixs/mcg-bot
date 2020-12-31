@@ -30,6 +30,9 @@ module.exports = {
                 case 'say':
                     cmdlist.get('helpsay').execute(msg,embed,config)
                 break;
+                case 'embed':
+                    cmdlist.get('helpembed').execute(msg,embed,config)
+                break;
                 case 'fun':
                     cmdlist.get('fun').execute(msg,varstore,config)
                 break;
