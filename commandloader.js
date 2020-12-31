@@ -9,7 +9,9 @@ module.exports = {
             './src/ownercmd/',
             './src/other/',
             './src/fun/',
+            './src/fun/help/',
             './src/TMP/',
+            './scr/TMP/help/',
             './src/help/',
             './src/help/helplist/'
         ]
