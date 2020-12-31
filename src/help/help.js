@@ -57,6 +57,15 @@ module.exports = {
                 case 'ym':
                     cmdlist.get('helpyomama').execute(msg,embed)
                 break;
+                case 'joke':
+                    cmdlist.get('helpjoke').execute(msg,embed)
+                break;
+                case 'apod':
+                    cmdlist.get('helpnasaapod').execute(msg,embed)
+                break;
+                case 'insult':
+                    cmdlist.get('helpinsult').execute(msg,embed,config)
+                break;
 
 
                 case 'tmp':
