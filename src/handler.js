@@ -75,6 +75,9 @@ module.exports = {
             case 'traffic':
                 cmdlist.get('tmptraffic').execute(msg,varstore,args,bot)
             break;
+            case 'react':
+                cmdlist.get('react').execute(msg,varstore,args,config)
+            break;
         }
 
 

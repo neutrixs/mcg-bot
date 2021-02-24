@@ -18,7 +18,8 @@ module.exports = {
                 `\`${config.PREFIX}speedtest\`\n`+
                 `\`${config.PREFIX}fun\`\n`+
                 `\`${config.PREFIX}pin\`\n`+
-                `\`${config.PREFIX}tmp\`\n`
+                `\`${config.PREFIX}tmp\`\n`+
+                `\`${config.PREFIX}react\``
             );
             msg.channel.send(embed)
         }
@@ -47,6 +48,9 @@ module.exports = {
                 break;
                 case 'pin':
                     cmdlist.get('helppin').execute(msg,embed,config)
+                break;
+                case 'react':
+                    cmdlist.get('helpreact').execute(msg,embed,config)
                 break;
 
 
