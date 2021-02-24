@@ -23,8 +23,7 @@ module.exports = {
                     `[] = Optional`
                 )
                 .addField('Game name:','ets2\nats',false)
-                .addField('Server name:',listserver,false)
-                .setFooter('Trucky API is really weird. why the heck is there sim 3???');
+                .addField('Server name:',listserver,false);
 
                 msg.channel.send(embed)
             })
