@@ -4,11 +4,12 @@ module.exports = {
     execute(msg,varstore,config){
         msg.channel.send(
             varstore.embed
-            .setTitle('List of TMP Commands:')
-            .setDescription(
-                `\`${config.PREFIX}tmpstats\`\n`+
-                `\`${config.PREFIX}tmptime\`\n`+
-                `\`${config.PREFIX}traffic\`\n`
+            .addField(
+                'List of TMP Commands:',
+                `\`${config.PREFIX}tmpstats\` - TruckersMP server status\n`+
+                `\`${config.PREFIX}tmptime\` - TruckersMP in-game time\n`+
+                `\`${config.PREFIX}traffic\` - Truckersmp traffic`,
+                false
             )
         )
     }

@@ -8,19 +8,40 @@ module.exports = {
             .setAuthor('Command List')
             .setTitle('List of Commands:')
             .setFooter(`${config.PREFIX}help command name`)
-            .setDescription(
-                `\`${config.PREFIX}del\`\n`+
-                `\`${config.PREFIX}say\`\n`+
-                `\`${config.PREFIX}embed\`\n`+
-                `\`${config.PREFIX}ann\`\n`+
-                `\`${config.PREFIX}file\`\n`+
-                `\`${config.PREFIX}credit\`\n`+
-                `\`${config.PREFIX}speedtest\`\n`+
-                `\`${config.PREFIX}fun\`\n`+
-                `\`${config.PREFIX}pin\`\n`+
-                `\`${config.PREFIX}tmp\`\n`+
-                `\`${config.PREFIX}react\``
-            );
+            .addField(
+                'Information',
+                `\`${config.PREFIX}help\` - List of commands\n`+
+                `\`${config.PREFIX}userinfo\` - get information of a user`,
+                false
+            )
+            .addField(
+                'Managing messages',
+                `\`${config.PREFIX}ann\` - Create an announcement\n`+
+                `\`${config.PREFIX}del\` - Delete message(s)\n`+
+                `\`${config.PREFIX}embed\` - Create an embed\n`+
+                `\`${config.PREFIX}pin\` - Pin a message\n`+
+                `\`${config.PREFIX}react\` - React a message\n`+
+                `\`${config.PREFIX}say\` - Make bot say something\n`+
+                `\`${config.PREFIX}file\` - Send a file/image using link`,
+                false
+            )
+            .addField(
+                'TMP',
+                `\`${config.PREFIX}tmp\` - TMP related commands`,
+                true
+            )
+            .addField(
+                'Fun',
+                `\`${config.PREFIX}fun\` - Some fun commands`,
+                true
+            )
+            .addField(
+                'Other',
+                `\`${config.PREFIX}credit\` - Shows this bot's credit\n`+
+                `\`${config.PREFIX}speedtest\` - Test this bot's internet speed`,
+                false
+            )
+
             msg.channel.send(embed)
         }
         else{
@@ -51,6 +72,10 @@ module.exports = {
                 break;
                 case 'react':
                     cmdlist.get('helpreact').execute(msg,embed,config)
+                break;
+                case 'userinfo':
+                case 'ui':
+                    cmdlist.get('helpuserinfo').execute(msg,embed,config)
                 break;
 
 

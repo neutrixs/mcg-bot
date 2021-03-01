@@ -5,12 +5,12 @@ module.exports = {
         let embed = varstore.embed;
 
         embed = embed
-        .setTitle('List of fun Commands:')
-        .setDescription(
-            `\`${config.PREFIX}yomama\`\n`+
-            `\`${config.PREFIX}joke\`\n`+
-            `\`${config.PREFIX}apod\`\n`+
-            `\`${config.PREFIX}insult\`\n`
+        .addField(
+            'List of fun Commands',
+            `\`${config.PREFIX}yomama\` - yomama jokes\n`+
+            `\`${config.PREFIX}joke\` - Random joke\n`+
+            `\`${config.PREFIX}apod\` - Astronomy Picture of the Day\n`+
+            `\`${config.PREFIX}insult\` - Insult someone <:mflush:815790736498753547>`
         )
         msg.channel.send(embed)
     }

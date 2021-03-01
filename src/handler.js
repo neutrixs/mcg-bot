@@ -49,6 +49,7 @@ module.exports = {
 
 
             case 'del':
+            case 'delete':
                 cmdlist.get('del').execute(msg,varstore,args,config)
             break;
             case 'say':
@@ -58,6 +59,7 @@ module.exports = {
                 cmdlist.get('embed').execute(msg,varstore,args,config)
             break;
             case 'ann':
+            case 'announce':
                 cmdlist.get('ann').execute(msg,varstore,args,config)
             break;
             case 'file':
@@ -77,6 +79,12 @@ module.exports = {
             break;
             case 'react':
                 cmdlist.get('react').execute(msg,varstore,args,config)
+            break;
+
+
+            case 'ui':
+            case 'userinfo':
+                cmdlist.get('userinfo').execute(bot,msg,varstore,args)
             break;
         }
 

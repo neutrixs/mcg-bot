@@ -7,6 +7,7 @@ module.exports = {
             './src/',
             './src/msgmanage/',
             './src/ownercmd/',
+            './src/cmdinfo/',
             './src/other/',
             './src/fun/',
             './src/fun/help/',
