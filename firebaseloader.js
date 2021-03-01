@@ -9,7 +9,6 @@ module.exports = {
                 }
                 await db.collection(bot.user.id).doc('cc').set(template)
                 return template.ccdata
-                //after the database was created. you have to restart the bot again(i'm too lazy to fix that)
             }
             else{
                 datareturn = data._fieldsProto.ccdata.stringValue
