@@ -36,6 +36,13 @@ module.exports = {
                 true
             )
             .addField(
+                'Custom commands',
+                `\`${config.PREFIX}acr\` - Add a custom reaction to this server\n`+
+                `\`${config.PREFIX}dcr\` - Delete a custom reaction in this server\n`+
+                `\`${config.PREFIX}lcr\` - View list of custom reactions in this server`,
+                false
+            )
+            .addField(
                 'Other',
                 `\`${config.PREFIX}credit\` - Shows this bot's credit\n`+
                 `\`${config.PREFIX}speedtest\` - Test this bot's internet speed`,
@@ -108,6 +115,16 @@ module.exports = {
                 break;
                 case 'traffic':
                     cmdlist.get('helptmptraffic').execute(msg,embed,config)
+                break;
+
+                case 'acr':
+                    cmdlist.get('helpacr').execute(msg,embed,config)
+                break;
+                case 'dcr':
+                    cmdlist.get('helpdcr').execute(msg,embed,config)
+                break;
+                case 'lcr':
+                    cmdlist.get('helplcr').execute(msg,embed)
                 break;
             }
         }

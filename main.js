@@ -7,7 +7,20 @@ let cmdlist = new discord.Collection();
 let cmdload = require('./commandloader').execute(cmdlist)
 cmdlist = cmdload
 
+//firebase
+const admin = require("firebase-admin");
+const serviceAccount = require("./accountkey.json"); //PATH TO FIREBASE SECRET KEY
+admin.initializeApp({
+credential: admin.credential.cert(serviceAccount)
+});
+const db = admin.firestore()
+customcommand = {};
+
 bot.on('ready',()=>{
+    loadfirebase = require('./firebaseloader.js').execute(bot,db)
+    .then(a=>{
+        customcommand = JSON.parse(a);
+    })
     console.log('works!')
     cmdlist.get('setstatus').execute(bot,config) //set bot's status
 })
@@ -21,9 +34,13 @@ bot.on('message',msg=>{
         embederror: new discord.MessageEmbed().setTitle('Error!').setColor('#FF0000'),
     }
     if(msg.author.bot) return;
-    if(!msg.content.startsWith(config.PREFIX)) return;
     try{
-        cmdlist.get('handler').execute(msg,cmdlist, varstore,bot);
+        a = cmdlist.get('handler').execute(msg,cmdlist, varstore,bot,db,customcommand);
+        if(a !== undefined){
+            if(a.type == 'acr'){
+                customcommand = a.data
+            }
+        }
     } catch(error){
         console.log(error)
     }
