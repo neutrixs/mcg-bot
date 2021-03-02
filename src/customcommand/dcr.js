@@ -27,6 +27,7 @@ module.exports = {
 
         if(customcommand.Data[content]){
             if(customcommand.Data[content].guild == msg.guild.id){
+                msg.channel.send(varstore.embed.setDescription('Removed!').setColor('#00FFFF'))
                 customcommand.Data.splice(content,1)
 
                 db.collection(bot.user.id).doc('cc').set(

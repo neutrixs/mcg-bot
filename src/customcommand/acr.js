@@ -48,7 +48,7 @@ module.exports = {
                 msg.channel.send(varstore.embederror.setDescription(`\`\`\`${e}\`\`\``))
                 return
             }
-            responseembed = [JSON.parse(embedinput)]
+            responseembed = JSON.parse(embedinput)
         }
 
         //what you need: command, response, responseembed
@@ -62,6 +62,7 @@ module.exports = {
             }
         }
 
+        msg.channel.send(varstore.embed.setDescription('Added!').setColor('#00FFFF'))
         customcommand.Data = customcommand.Data.concat(newcommand)
         db.collection(bot.user.id).doc('cc').set(
             {
