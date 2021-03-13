@@ -20,7 +20,7 @@ customprefix = {};
 bot.on('ready',()=>{
     loadfirebase = require('./firebaseloader.js').execute(bot,db)
     .then(a=>{
-        customcommand = JSON.parse(a);
+        customcommand = JSON.parse(a.cc);
         customprefix = JSON.parse(a.customprefix)
     })
     console.log('works!')
