@@ -15,11 +15,13 @@ credential: admin.credential.cert(serviceAccount)
 });
 const db = admin.firestore()
 customcommand = {};
+customprefix = {};
 
 bot.on('ready',()=>{
     loadfirebase = require('./firebaseloader.js').execute(bot,db)
     .then(a=>{
         customcommand = JSON.parse(a);
+        customprefix = JSON.parse(a.customprefix)
     })
     console.log('works!')
     cmdlist.get('setstatus').execute(bot,config) //set bot's status
@@ -35,12 +37,7 @@ bot.on('message',msg=>{
     }
     if(msg.author.bot) return;
     try{
-        a = cmdlist.get('handler').execute(msg,cmdlist, varstore,bot,db,customcommand);
-        if(a !== undefined){
-            if(a.type == 'acr'){
-                customcommand = a.data
-            }
-        }
+        cmdlist.get('handler').execute(msg,cmdlist, varstore,bot,db,customcommand,customprefix);
     } catch(error){
         console.log(error)
     }

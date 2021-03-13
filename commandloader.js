@@ -10,6 +10,7 @@ module.exports = {
             './src/cmdinfo/',
             './src/other/',
             './src/customcommand/',
+            './src/prefix/',
             './src/fun/',
             './src/fun/help/',
             './src/TMP/',

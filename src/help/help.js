@@ -26,6 +26,11 @@ module.exports = {
                 false
             )
             .addField(
+                'Prefix',
+                `\`${config.PREFIX}prefix\` - See this bot's prefix / server prefix. or set this server's prefix\n`,
+                false
+            )
+            .addField(
                 'TMP',
                 `\`${config.PREFIX}tmp\` - TMP related commands`,
                 true
@@ -84,6 +89,9 @@ module.exports = {
                 case 'ui':
                     cmdlist.get('helpuserinfo').execute(msg,embed,config)
                 break;
+                case 'prefix':
+                    cmdlist.get('helpprefix').execute(msg,embed,config)
+                break
 
 
                 case 'fun':

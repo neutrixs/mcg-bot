@@ -1,14 +1,47 @@
 module.exports = {
     name:"handler",
     description:"command handler. i don't want to make the main file very messy",
-    execute(msg,cmdlist,varstore,bot,db,customcommand){
-        const config = require('../botconfig.js');
-        let args;
-        args = msg.content.replace(/\s\s+/g, ' ');
-        args = args.substr(config.PREFIX.length).split(' ');
-        let singlecmd = msg.content.substr(config.PREFIX.length);
+    execute(msg,cmdlist,varstore,bot,db,customcommand,customprefix){
+        let config = require('../botconfig.js');
 
-        if(msg.content.startsWith(config.PREFIX)){
+        //this is the only way that i can bypass the bug. which is, require botconfig doesn't rewrite prefix properties
+        if(!config.PREFIXTEMP){
+            config.PREFIXTEMP = config.PREFIX
+        }
+        else {
+            config.PREFIX = config.PREFIXTEMP
+        }
+
+        let args;
+        let singlecmd;
+        let tagbot = `<@!${bot.user.id}>`
+        args = msg.content.replace(/\s\s+/g, ' ');
+
+        //check if the current guild has a custom prefix. if so, set the prefix to that
+        if(msg.channel.type !== 'dm'){
+            if(customprefix[msg.guild.id.toString()]){
+                config.PREFIX = customprefix[msg.guild.id.toString()]
+            }
+        }
+
+        if(msg.content.startsWith(config.PREFIX) || msg.content.startsWith(tagbot)){
+            if(msg.content.startsWith(tagbot+' ')){
+                temp = tagbot+' '
+                args = args.substr(temp.length).split(' ')
+                singlecmd = msg.content.substr(temp.length)
+            }
+            else if(msg.content.startsWith(tagbot)){
+                temp = tagbot
+                args = args.substr(temp.length).split(' ')
+                singlecmd = msg.content.substr(temp.length)
+            }
+            else{
+                args = args.substr(config.PREFIX.length).split(' ');
+                singlecmd = msg.content.substr(config.PREFIX.length);
+            }
+
+
+
             switch(singlecmd){
                 case 'ping':
                     cmdlist.get('ping').execute(msg)
@@ -80,6 +113,9 @@ module.exports = {
                 break;
                 case 'react':
                     cmdlist.get('react').execute(msg,varstore,args,config)
+                break;
+                case 'prefix':
+                    cmdlist.get('prefix').execute(msg,bot,varstore,args,config,customprefix,db)
                 break;
 
 

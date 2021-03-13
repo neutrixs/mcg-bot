@@ -35,12 +35,6 @@ module.exports = {
                         ccdata:JSON.stringify(customcommand)
                     }
                 )
-
-                returnthis = {
-                    type:"acr",
-                    data:customcommand
-                }
-                return returnthis
             }
             else{
                 msg.channel.send(invalidIDNumber)
