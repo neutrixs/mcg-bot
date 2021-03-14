@@ -76,6 +76,7 @@ module.exports = {
             }
             
             switch(args[0]){
+                case 'h':
                 case 'help':
                     cmdlist.get('help').execute(msg,varstore,args,config,cmdlist)
                 break;
