@@ -16,15 +16,23 @@ credential: admin.credential.cert(serviceAccount)
 const db = admin.firestore()
 customcommand = {};
 customprefix = {};
+customstatus = []
+statusOn = null
+statusinterval = null
 
 bot.on('ready',()=>{
     loadfirebase = require('./firebaseloader.js').execute(bot,db)
     .then(a=>{
         customcommand = JSON.parse(a.cc);
         customprefix = JSON.parse(a.customprefix)
+        customstatus = JSON.parse(a.status)
+        statusOn = a.statusOn
+        if(customstatus.length == 0) statusOn = false;
+        if(statusOn == true){
+            cmdlist.get('setstatus').execute(bot,customstatus)
+        }
     })
     console.log('works!')
-    cmdlist.get('setstatus').execute(bot,config) //set bot's status
 })
 bot.on('message',msg=>{
     //storing variable
@@ -37,7 +45,25 @@ bot.on('message',msg=>{
     }
     if(msg.author.bot) return;
     try{
-        cmdlist.get('handler').execute(msg,cmdlist, varstore,bot,db,customcommand,customprefix);
+        returned = cmdlist.get('handler').execute(msg,cmdlist, varstore,bot,db,customcommand,customprefix,customstatus);
+        if(returned !== undefined){
+            switch(returned.type){
+                case 'status':
+                    customstatus = returned.data
+                    statusinterval = null
+                    if(statusOn){
+                        cmdlist.get('setstatus').execute(bot,customstatus)
+                    }
+                break
+                case 'enablestatus':
+                    statusOn = returned.statusOn
+                    cmdlist.get('setstatus').execute(bot,customstatus)
+                break
+                case 'disablestatus':
+                    statusOn = returned.statusOn
+                break
+            }
+        }
     } catch(error){
         console.log(error)
     }

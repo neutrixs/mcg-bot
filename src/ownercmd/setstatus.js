@@ -1,11 +1,19 @@
 module.exports = {
     name:"setstatus",
-    description:"set bot status",
-    execute(bot,config){
-        function setstatus(){
-            bot.user.setActivity(config.activity.status, {type: config.activity.type.toUpperCase()})
+    execute(bot,customstatus){
+        bot.user.setActivity(customstatus[0].name,{type: customstatus[0].type})
+        if(customstatus.length > 1){
+            nthStatus = 1
         }
-        setstatus()
-        statusinterval = setInterval(setstatus, 3600000)
+        else{
+            nthStatus = 0
+        }
+        statusinterval = setInterval(()=>{
+            bot.user.setActivity(customstatus[nthStatus].name,{type: customstatus[nthStatus].type})
+            nthStatus++
+            if(nthStatus == customstatus.length){
+                nthStatus = 0
+            }
+        },10000)
     }
 }

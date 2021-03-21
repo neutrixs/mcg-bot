@@ -3,9 +3,5 @@ module.exports = {
     PREFIX:"///",
     thisbot:"bot user id",
     owner:"owner user id",
-    ownername:"owner name(for credit)",
-    activity:{
-        status:"status name",
-        type:"WATCHING/PLAYING/LISTENING"
-    }
+    ownername:"owner name(for credit)"
 }

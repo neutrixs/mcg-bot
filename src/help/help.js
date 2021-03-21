@@ -53,6 +53,14 @@ module.exports = {
                 `\`${config.PREFIX}speedtest\` - Test this bot's internet speed`,
                 false
             )
+            .addField(
+                'Owner commands',
+                `\`${config.PREFIX}addstatus\` - Add a(or multiple) custom status\n`+
+                `\`${config.PREFIX}removestatus\` - Delete a custom status\n`+
+                `\`${config.PREFIX}liststatus\` - View list of custom status\n`+
+                `\`${config.PREFIX}enablestatus\` - Enable custom status\n`+
+                `\`${config.PREFIX}disablestatus\` - Disable custom status`
+            )
 
             msg.channel.send(embed)
         }
@@ -134,6 +142,22 @@ module.exports = {
                 case 'lcr':
                     cmdlist.get('helplcr').execute(msg,embed)
                 break;
+
+                case 'addstatus':
+                    cmdlist.get('helpaddstatus').execute(msg,embed,config)
+                break
+                case 'removestatus':
+                    cmdlist.get('helpremovestatus').execute(msg,embed,config)
+                break
+                case 'liststatus':
+                    cmdlist.get('helpliststatus').execute(msg,embed)
+                break
+                case 'enablestatus':
+                    cmdlist.get('helpenablestatus').execute(msg,embed)
+                break
+                case 'disablestatus':
+                    cmdlist.get('helpdisablestatus').execute(msg,embed)
+                break
             }
         }
     }

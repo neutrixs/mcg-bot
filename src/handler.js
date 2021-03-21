@@ -1,7 +1,7 @@
 module.exports = {
     name:"handler",
     description:"command handler. i don't want to make the main file very messy",
-    execute(msg,cmdlist,varstore,bot,db,customcommand,customprefix){
+    execute(msg,cmdlist,varstore,bot,db,customcommand,customprefix,customstatus){
         let config = require('../botconfig.js');
 
         //this is the only way that i can bypass the bug. which is, require botconfig doesn't rewrite prefix properties
@@ -73,6 +73,11 @@ module.exports = {
                 case 'tmptime':
                     cmdlist.get('tmptime').execute(msg,varstore,bot)
                 break;
+
+                case 'enablestatus':
+                return cmdlist.get('enablestatus').execute(msg,varstore,config,bot,db,statusOn,customstatus)
+                case 'disablestatus':
+                return cmdlist.get('disablestatus').execute(msg,varstore,config,bot,db,statusOn)
             }
             
             switch(args[0]){
@@ -135,6 +140,14 @@ module.exports = {
                 case 'lcr':
                     cmdlist.get('lcr').execute(msg,varstore,customcommand)
                 break;
+
+                case 'addstatus':
+                return cmdlist.get('addstatus').execute(msg,varstore,config,bot,db,customstatus)
+                case 'removestatus':
+                return cmdlist.get('removestatus').execute(msg,args,varstore,config,bot,db,customstatus)
+                case 'liststatus':
+                    cmdlist.get('liststatus').execute(msg,varstore,customstatus,config)
+                break
 
             }
             cmdlist.get('crsend').execute(msg,customcommand)

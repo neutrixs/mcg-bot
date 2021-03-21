@@ -3,8 +3,12 @@ module.exports = {
         async function getData(){
             let cc;
             let customprefix;
+            let status;
+            let statusOn;
             let ccload = await db.collection(bot.user.id).doc('cc').get()
             let prefixload = await db.collection(bot.user.id).doc('customprefix').get()
+            let statusload = await db.collection(bot.user.id).doc('status').get()
+            let statusOnLoad = await db.collection(bot.user.id).doc('statuson').get()
             if(ccload._fieldsProto == undefined){
                 var template = {
                     ccdata: '{"Data":[]}'
@@ -27,9 +31,32 @@ module.exports = {
                 customprefix = prefixload._fieldsProto.prefixdata.stringValue
             }
 
+            if(statusload._fieldsProto == undefined){
+                var template = {
+                    status: '[]'
+                }
+                await db.collection(bot.user.id).doc('status').set(template)
+                status = template.status
+            }
+            else{
+                status = statusload._fieldsProto.status.stringValue
+            }
+
+            if(statusOnLoad._fieldsProto == undefined){
+                var template = {
+                    statusOn: false
+                }
+                await db.collection(bot.user.id).doc('statuson').set(template)
+            }
+            else{
+                statusOn = statusOnLoad._fieldsProto.statusOn.booleanValue
+            }
+
             thisToReturn = {
                 cc:cc,
-                customprefix:customprefix
+                customprefix:customprefix,
+                status:status,
+                statusOn:statusOn
             }
             return thisToReturn
         }
