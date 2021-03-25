@@ -28,7 +28,7 @@ bot.on('ready',()=>{
         customstatus = JSON.parse(a.status)
         statusOn = a.statusOn
         if(customstatus.length == 0) statusOn = false;
-        if(statusOn == true){
+        if(statusOn){
             cmdlist.get('setstatus').execute(bot,customstatus)
         }
     })
@@ -50,7 +50,6 @@ bot.on('message',msg=>{
             switch(returned.type){
                 case 'status':
                     customstatus = returned.data
-                    statusinterval = null
                     if(statusOn){
                         cmdlist.get('setstatus').execute(bot,customstatus)
                     }
