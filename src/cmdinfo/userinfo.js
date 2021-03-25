@@ -3,6 +3,7 @@ module.exports = {
     description:"get user info",
     execute(bot,msg,varstore,args){
         var embed = varstore.embed
+        var requestedBy = `Requested by ${msg.author.username}#${msg.author.discriminator}`
 
         if(args[1]){
             args[1] = args[1].replace('<@','').replace('!','').replace('>','')
@@ -14,7 +15,6 @@ module.exports = {
                 return
             }
             msg.author = bot.users.cache.find(m=>m.id==args[1])
-            console.log(msg.author)
         }
 
         //activity
@@ -60,7 +60,7 @@ module.exports = {
         .addField('Avatar URL',useravatar,false)
         .setThumbnail(useravatar)
 
-        .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`)
+        .setFooter(requestedBy)
         .setTimestamp()
         msg.channel.send(embed)
     }
