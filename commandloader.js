@@ -16,7 +16,8 @@ module.exports = {
             './src/TMP/',
             './src/TMP/help/',
             './src/help/',
-            './src/help/helplist/'
+            './src/help/helplist/',
+            './src/reaction/'
         ]
 
         for(const dir of dirlist){

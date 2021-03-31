@@ -78,6 +78,10 @@ module.exports = {
                 return cmdlist.get('enablestatus').execute(msg,varstore,config,bot,db,statusOn,customstatus)
                 case 'disablestatus':
                 return cmdlist.get('disablestatus').execute(msg,varstore,config,bot,db,statusOn)
+
+                case 'listreactionroles':
+                    cmdlist.get('listreactionroles').execute(msg,varstore,reactionRoles)
+                break
             }
             
             switch(args[0]){
@@ -147,6 +151,13 @@ module.exports = {
                 return cmdlist.get('removestatus').execute(msg,args,varstore,config,bot,db,customstatus)
                 case 'liststatus':
                     cmdlist.get('liststatus').execute(msg,varstore,customstatus,config)
+                break
+
+                case 'addreactionroles':
+                    cmdlist.get('addreactionroles').execute(msg,args,varstore,config,bot,db,reactionRoles)
+                break
+                case 'deletereactionroles':
+                    cmdlist.get('deletereactionroles').execute(msg,args,varstore,config,bot,db,reactionRoles)
                 break
 
             }

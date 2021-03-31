@@ -22,7 +22,10 @@ module.exports = {
                 `\`${config.PREFIX}pin\` - Pin a message\n`+
                 `\`${config.PREFIX}react\` - React a message\n`+
                 `\`${config.PREFIX}say\` - Make bot say something\n`+
-                `\`${config.PREFIX}file\` - Send a file/image using link`,
+                `\`${config.PREFIX}file\` - Send a file/image using link\n`,
+                `\`${config.PREFIX}addreactionroles\` - Add reaction roles\n`,+
+                `\`${config.PREFIX}deletereactionroles\` - Remove reaction roles\n`,+
+                `\`${config.PREFIX}listreactionroles\` - View list of reaction roles`,
                 false
             )
             .addField(
@@ -157,6 +160,16 @@ module.exports = {
                 break
                 case 'disablestatus':
                     cmdlist.get('helpdisablestatus').execute(msg,embed)
+                break
+
+                case 'addreactionroles':
+                    cmdlist.get('helpaddreactionroles').execute(msg,embed,config)
+                break
+                case 'deletereactionroles':
+                    cmdlist.get('helpdeletereactionroles').execute(msg,embed,config)
+                break
+                case 'listreactionroles':
+                    cmdlist.get('helplistreactionroles').execute(msg,embed)
                 break
             }
         }

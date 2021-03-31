@@ -1,5 +1,5 @@
 const discord = require('discord.js');
-const bot = new discord.Client();
+const bot = new discord.Client({partials:['MESSAGE','REACTION']});
 const config = require('./botconfig');
 let cmdlist = new discord.Collection();
 
@@ -19,6 +19,7 @@ customprefix = {};
 customstatus = []
 statusOn = null
 statusinterval = null
+reactionRoles = {};
 
 bot.on('ready',()=>{
     loadfirebase = require('./firebaseloader.js').execute(bot,db)
@@ -26,6 +27,7 @@ bot.on('ready',()=>{
         customcommand = JSON.parse(a.cc);
         customprefix = JSON.parse(a.customprefix)
         customstatus = JSON.parse(a.status)
+        reactionRoles = JSON.parse(a.reactionRoles)
         statusOn = a.statusOn
         if(customstatus.length == 0) statusOn = false;
         if(statusOn){
@@ -45,11 +47,12 @@ bot.on('message',msg=>{
     }
     if(msg.author.bot) return;
     try{
-        returned = cmdlist.get('handler').execute(msg,cmdlist, varstore,bot,db,customcommand,customprefix,customstatus);
+        returned = cmdlist.get('handler').execute(msg,cmdlist, varstore,bot,db,customcommand,customprefix,customstatus,reactionRoles);
         if(returned !== undefined){
             switch(returned.type){
                 case 'status':
                     customstatus = returned.data
+                    statusinterval = null
                     if(statusOn){
                         cmdlist.get('setstatus').execute(bot,customstatus)
                     }
@@ -65,6 +68,16 @@ bot.on('message',msg=>{
         }
     } catch(error){
         console.log(error)
+    }
+})
+bot.on('messageReactionAdd',(msg,user)=>{
+    if(JSON.stringify(reactionRoles)!=='{}'){ //save some resources dude
+        cmdlist.get('reactionAddRemove').execute(msg,bot,user,reactionRoles,true)
+    }
+})
+bot.on('messageReactionRemove',(msg,user)=>{
+    if(JSON.stringify(reactionRoles)!=='{}'){
+        cmdlist.get('reactionAddRemove').execute(msg,bot,user,reactionRoles,false)
     }
 })
 

@@ -5,10 +5,12 @@ module.exports = {
             let customprefix;
             let status;
             let statusOn;
+            let reactionRoles;
             let ccload = await db.collection(bot.user.id).doc('cc').get()
             let prefixload = await db.collection(bot.user.id).doc('customprefix').get()
             let statusload = await db.collection(bot.user.id).doc('status').get()
             let statusOnLoad = await db.collection(bot.user.id).doc('statuson').get()
+            let reactionRolesLoad = await db.collection(bot.user.id).doc('reactionroles').get()
             if(ccload._fieldsProto == undefined){
                 var template = {
                     ccdata: '{"Data":[]}'
@@ -51,12 +53,23 @@ module.exports = {
             else{
                 statusOn = statusOnLoad._fieldsProto.statusOn.booleanValue
             }
+            if(reactionRolesLoad._fieldsProto == undefined){
+                var template = {
+                    reactionRoles: '{}'
+                }
+                await db.collection(bot.user.id).doc('reactionroles').set(template)
+                reactionRoles = template.reactionRoles
+            }
+            else{
+                reactionRoles = reactionRolesLoad._fieldsProto.reactionRoles.stringValue
+            }
 
             thisToReturn = {
                 cc:cc,
                 customprefix:customprefix,
                 status:status,
-                statusOn:statusOn
+                statusOn:statusOn,
+                reactionRoles:reactionRoles
             }
             return thisToReturn
         }
