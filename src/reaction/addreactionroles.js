@@ -113,7 +113,10 @@ module.exports = {
                     reactionRoles:JSON.stringify(reactionRoles)
                 }
             )
-            msg.channel.send(varstore.embed.setDescription('Added!'))
+            msg.delete()
+            msg.channel.send(varstore.embed.setDescription('Added!')).then(msg => {
+                msg.delete({timeout:2000})
+            })
         }
         fetchnSend()
     }

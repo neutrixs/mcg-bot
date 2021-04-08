@@ -40,7 +40,10 @@ module.exports = {
             }
         )
         
-        msg.channel.send(varstore.embed.setDescription('Deleted!'))
+        msg.delete()
+        msg.channel.send(varstore.embed.setDescription('Deleted!')).then(msg => {
+            msg.delete({timeout:2000})
+        })
 
         channel = msg.guild.channels.cache.find(c=>c.id == removeThis[0].channelID)
         if(channel == undefined) return
