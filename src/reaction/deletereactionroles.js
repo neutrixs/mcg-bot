@@ -36,7 +36,7 @@ module.exports = {
         delete reactionRoles[Object.keys(reactionRoles)[args[1]]]
         db.collection(bot.user.id).doc('reactionroles').set(
             {
-                reactionRoles: JSON.stringify(reactionRoles)
+                reactionRoles: reactionRoles
             }
         )
         

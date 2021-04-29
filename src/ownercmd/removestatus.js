@@ -23,7 +23,7 @@ module.exports = {
 
         db.collection(bot.user.id).doc('status').set(
             {
-                status:JSON.stringify(customstatus)
+                status:customstatus
             }
         )
         if(clearInterval !== null){

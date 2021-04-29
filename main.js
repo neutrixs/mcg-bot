@@ -24,10 +24,32 @@ reactionRoles = {};
 bot.on('ready',()=>{
     loadfirebase = require('./firebaseloader.js').execute(bot,db)
     .then(a=>{
-        customcommand = JSON.parse(a.cc);
-        customprefix = JSON.parse(a.customprefix)
-        customstatus = JSON.parse(a.status)
-        reactionRoles = JSON.parse(a.reactionRoles)
+        //if you still have the old format with string
+        if(typeof a.cc == 'string'){
+            customcommand = JSON.parse(a.cc);
+        }
+        else{
+            customcommand = a.cc
+        }
+        if(typeof a.customprefix == 'string'){
+            customprefix = JSON.parse(a.customprefix)
+        }
+        else{
+            customprefix = a.customprefix
+        }
+        if(typeof a.status == 'string'){
+            customstatus = JSON.parse(a.status)
+        }
+        else{
+            customstatus = a.status
+        }
+        if(typeof a.reactionRoles == 'string'){
+            reactionRoles = JSON.parse(a.reactionRoles)
+        }
+        else{
+            reactionRoles = a.reactionRoles
+        }
+
         statusOn = a.statusOn
         if(customstatus.length == 0) statusOn = false;
         if(statusOn){

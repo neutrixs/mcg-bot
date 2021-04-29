@@ -66,7 +66,7 @@ module.exports = {
         customcommand.Data = customcommand.Data.concat(newcommand)
         db.collection(bot.user.id).doc('cc').set(
             {
-                ccdata:JSON.stringify(customcommand)
+                ccdata:customcommand
             }
         )
     }

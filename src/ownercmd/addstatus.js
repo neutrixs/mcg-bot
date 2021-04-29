@@ -19,7 +19,7 @@ module.exports = {
             )
             db.collection(bot.user.id).doc('status').set(
                 {
-                    status:JSON.stringify(customstatus)
+                    status:customstatus
                 }
             )
             msg.channel.send(varstore.embed.setDescription('Added!\n'+`\`\`\`${JSON.stringify(customstatus[customstatus.length-1],null,'\t')}\`\`\``))

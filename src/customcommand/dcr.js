@@ -32,7 +32,7 @@ module.exports = {
 
                 db.collection(bot.user.id).doc('cc').set(
                     {
-                        ccdata:JSON.stringify(customcommand)
+                        ccdata:customcommand
                     }
                 )
             }

@@ -26,7 +26,7 @@ module.exports = {
                     customprefix[msg.guild.id] = args[1]
                     db.collection(bot.user.id).doc('customprefix').set(
                         {
-                            prefixdata:JSON.stringify(customprefix)
+                            prefixdata:customprefix
                         }
                     )
                     embed = embed

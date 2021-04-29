@@ -97,7 +97,6 @@ module.exports = {
                 }
                 dataForLater = dataForLater.concat(
                     {
-                        emojiID:emojires.id,
                         emojiName:emojires.name,
                         rolesID:roleres.id,
                         guildID:msg.guild.id,
@@ -105,12 +104,15 @@ module.exports = {
                         messageID:fetchThis.id
                     }
                 )
+                if(emojires.id){
+                    dataForLater[dataForLater.length-1].emojiID = emojires.id
+                }
             }
             reactionRoles[fetchThis.id] = dataForLater
 
             db.collection(bot.user.id).doc('reactionroles').set(
                 {
-                    reactionRoles:JSON.stringify(reactionRoles)
+                    reactionRoles:reactionRoles
                 }
             )
             msg.delete()
