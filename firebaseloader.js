@@ -13,35 +13,35 @@ module.exports = {
             let reactionRolesLoad = await db.collection(bot.user.id).doc('reactionroles').get()
             if(ccload._fieldsProto == undefined){
                 var template = {
-                    ccdata: '{"Data":[]}'
+                    ccdata: {Data:[]}
                 }
                 await db.collection(bot.user.id).doc('cc').set(template)
                 cc = template.ccdata
             }
             else{
-                cc = ccload._fieldsProto.ccdata.stringValue
+                cc = (ccload.data()).ccdata
             }
 
             if(prefixload._fieldsProto == undefined){
                 var template = {
-                    prefixdata: '{}'
+                    prefixdata: {}
                 }
                 await db.collection(bot.user.id).doc('customprefix').set(template)
                 customprefix = template.prefixdata
             }
             else{
-                customprefix = prefixload._fieldsProto.prefixdata.stringValue
+                customprefix = (prefixload.data()).prefixdata
             }
 
             if(statusload._fieldsProto == undefined){
                 var template = {
-                    status: '[]'
+                    status: []
                 }
                 await db.collection(bot.user.id).doc('status').set(template)
                 status = template.status
             }
             else{
-                status = statusload._fieldsProto.status.stringValue
+                status = (statusload.data()).status
             }
 
             if(statusOnLoad._fieldsProto == undefined){
@@ -51,17 +51,17 @@ module.exports = {
                 await db.collection(bot.user.id).doc('statuson').set(template)
             }
             else{
-                statusOn = statusOnLoad._fieldsProto.statusOn.booleanValue
+                statusOn = (statusOnLoad.data()).statusOn
             }
             if(reactionRolesLoad._fieldsProto == undefined){
                 var template = {
-                    reactionRoles: '{}'
+                    reactionRoles: {}
                 }
                 await db.collection(bot.user.id).doc('reactionroles').set(template)
                 reactionRoles = template.reactionRoles
             }
             else{
-                reactionRoles = reactionRolesLoad._fieldsProto.reactionRoles.stringValue
+                reactionRoles = (reactionRolesLoad.data()).reactionRoles
             }
 
             thisToReturn = {
