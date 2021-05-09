@@ -18,7 +18,13 @@ module.exports = {
                 }
                 msg.author = bot.users.cache.find(m=>m.id==args[1])
                 if(msg.author == undefined){
-                    msg.author = await bot.users.fetch(args[1])
+                    try{
+                        msg.author = await bot.users.fetch(args[1])
+                    }
+                    catch(e){
+                        msg.channel.send(varstore.embederror.setDescription(e))
+                        return
+                    }
                 }
             }
 
