@@ -55,6 +55,7 @@ bot.on('ready',()=>{
         if(statusOn){
             cmdlist.get('setstatus').execute(bot,customstatus)
         }
+        console.log('database ready!')
     })
     console.log('works!')
 })
