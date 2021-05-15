@@ -1,23 +1,25 @@
 module.exports = {
     name:"nasaapod",
-    execute(msg){
-        const https = require('https');
-        https.get('https://api.nasa.gov/planetary/apod?api_key=xKSRixFlGc0oT2CDVcTJb9TaVHQEG8fc2wgsVseV',r=>{
-            let data;
-            r.on('data',chunk=>{
-                data = chunk;
-            })
-            r.on('end',()=>{
-                data = JSON.parse(data);
-                if(data.msg){
-                    msg.chanel.send(data.msg)
-                    return
-                }
-                if(data.url.includes('youtube.com/embed')){
-                    data.url = data.url.replace('youtube.com/embed','youtu.be')
-                }
-                msg.channel.send(`${data.explanation}\n${data.url?data.url:''}`,{files:data.hdurl?[data.hdurl]:[]})
-            })
-        })
+    execute(msg,config){
+        const fetch = require('node-fetch')
+        async function get(){
+            res = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${config.nasa_api_key}`)
+            res = await res.json()
+            if(res.msg){
+                msg.channel.send(res.msg)
+                return
+            }
+            if(res.url.includes('youtube.com/embed')){
+                res.url = res.url.replace('youtube.com/embed','youtu.be')
+            }
+            try{
+                msg.channel.send(`${res.explanation}\n${res.hdurl?res.hdurl:res.url}`)
+            }
+            catch(e){
+                console.log(e)
+            }
+            
+        }
+        get()
     }
 }

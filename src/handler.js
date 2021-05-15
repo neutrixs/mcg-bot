@@ -64,7 +64,7 @@ module.exports = {
                     cmdlist.get('joke').execute(msg)
                 break;
                 case 'apod':
-                    cmdlist.get('nasaapod').execute(msg)
+                    cmdlist.get('nasaapod').execute(msg,config)
                 break;
 
                 case 'tmp':
