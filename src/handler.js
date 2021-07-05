@@ -82,6 +82,10 @@ module.exports = {
                 case 'listreactionroles':
                     cmdlist.get('listreactionroles').execute(msg,varstore,reactionRoles)
                 break
+
+                case 'destroy':
+                    cmdlist.get('destroy').execute(bot,msg,config)
+                break
             }
             
             switch(args[0]){
