@@ -5,7 +5,6 @@
   "main": "main.js",
   "dependencies": {
     "discord.js": "^12.5.1",
-    "discord.js.old": "^11.6.5",
     "fast-speedtest-api": "^0.3.2",
     "firebase-admin": "^9.5.0",
     "node-fetch": "^2.6.1"
