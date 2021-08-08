@@ -161,7 +161,7 @@ module.exports = {
                     cmdlist.get('addreactionroles').execute(msg,args,varstore,config,bot,db,reactionRoles)
                 break
                 case 'deletereactionroles':
-                    cmdlist.get('deletereactionroles').execute(msg,args,varstore,config,bot,db,reactionRoles)
+                    cmdlist.get('deletereactionroles').execute(msg,args,varstore,config,bot,db,reactionRoles,Permissions)
                 break
 
             }
