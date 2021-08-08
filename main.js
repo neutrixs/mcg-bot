@@ -114,5 +114,8 @@ bot.on('messageReactionRemove',(msg,user)=>{
         cmdlist.get('reactionAddRemove').execute(msg,bot,user,reactionRoles,false)
     }
 })
+process.on('uncaughtException', (exception) => {
+    console.log(exception);
+})
 
 bot.login(config.token);
