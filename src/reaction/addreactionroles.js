@@ -3,28 +3,28 @@ module.exports = {
     execute(msg,args,varstore,config,bot,db,reactionRoles){
         let invalidFormat = varstore.embederror.setDescription(`Invalid format! see \`${config.PREFIX}help addreactionroles\` for more info`)
         let dataForLater = []
-        if(msg.channel.type == 'dm'){
-            msg.channel.send(varstore.embednodm)
+        if(msg.channel.type == 'DM'){
+            msg.channel.send({embeds:[varstore.embednodm]})
             return
         }
         
         if(!msg.member.hasPermission('MANAGE_MESSAGES')){
-            msg.channel.send(varstore.embednopermission)
+            msg.channel.send({embeds:[varstore.embednopermission]})
             return
         }
         if(msg.content.startsWith(`<@!${bot.user.id}>`)){
             embed = varstore.embed
             .setDescription('Please use prefix instead! this is to prevent any errors')
             .setColor('#FF0000')
-            msg.channel.send(embed)
+            msg.channel.send({embeds:[embed]})
             return
         }
         if(!args[2]){
-            msg.channel.send(invalidFormat)
+            msg.channel.send({embeds:[invalidFormat]})
             return
         }
         if(isNaN(args[1])){
-            msg.channel.send(invalidFormat)
+            msg.channel.send({embeds:[invalidFormat]})
             return
         }
         
@@ -34,7 +34,7 @@ module.exports = {
                 fetchThis = await msg.channel.messages.fetch(args[1])
             }
             catch(e){
-                msg.channel.send(varstore.embederror.setDescription('```'+e+'```'))
+                msg.channel.send({embeds:[varstore.embederror.setDescription('```'+e+'```')]})
                 return
             }
 
@@ -48,7 +48,7 @@ module.exports = {
                 fetchThis.reactions.removeAll()
             }
             if(actualContent.length > 10){
-                msg.channel.send(embederror.setDescription('Maximum of 10 reactions are allowed to prevent errors!'))
+                msg.channel.send({embeds:[embederror.setDescription('Maximum of 10 reactions are allowed to prevent errors!')]})
                 return
             }
 
@@ -72,13 +72,13 @@ module.exports = {
                         emojires = emoji
                     }
                     else{
-                        msg.channel.send(varstore.embederror.setDescription(`Invalid emoji at ${i+1}`))
+                        msg.channel.send({embeds:[varstore.embederror.setDescription(`Invalid emoji at ${i+1}`)]})
                         fetchThis.reactions.removeAll()
                         return
                     }
                 }
                 if(roleres == undefined){
-                    msg.channel.send(varstore.embederror.setDescription(`Invalid role at ${i+1}`))
+                    msg.channel.send({embeds:[varstore.embederror.setDescription(`Invalid role at ${i+1}`)]})
                     fetchThis.reactions.removeAll()
                     return
                 }
@@ -86,7 +86,7 @@ module.exports = {
                     fetchThis.react(emojires)
                 }
                 catch(e){
-                    msg.channel.send(varstore.embederror.setDescription('```'+e+'```'))
+                    msg.channel.send({embeds:[varstore.embederror.setDescription('```'+e+'```')]})
                     return
                 }
 
@@ -116,7 +116,7 @@ module.exports = {
                 }
             )
             msg.delete()
-            msg.channel.send(varstore.embed.setDescription('Added!')).then(msg => {
+            msg.channel.send({embeds:[varstore.embed.setDescription('Added!')]}).then(msg => {
                 msg.delete({timeout:2000})
             })
         }
