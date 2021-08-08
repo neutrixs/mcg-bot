@@ -1,5 +1,16 @@
 const discord = require('discord.js');
-const bot = new discord.Client({partials:['MESSAGE','REACTION']});
+const Intents = discord.Intents
+const Permissions = discord.Permissions
+const bot = new discord.Client({
+    partials:['MESSAGE','REACTION'],
+    intents:[
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MESSAGES,
+        Intents.FLAGS.DIRECT_MESSAGES,
+        Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+        Intents.FLAGS.GUILD_WEBHOOKS
+    ]
+});
 const config = require('./botconfig');
 let cmdlist = new discord.Collection();
 
@@ -59,7 +70,7 @@ bot.on('ready',()=>{
     })
     console.log('works!')
 })
-bot.on('message',msg=>{
+bot.on('messageCreate',msg=>{
     //storing variable
     let varstore = {
         user: msg.author.id,
@@ -70,7 +81,7 @@ bot.on('message',msg=>{
     }
     if(msg.author.bot) return;
     try{
-        returned = cmdlist.get('handler').execute(msg,cmdlist, varstore,bot,db,customcommand,customprefix,customstatus,reactionRoles);
+        returned = cmdlist.get('handler').execute(msg,cmdlist, varstore,bot,db,customcommand,customprefix,customstatus,reactionRoles,Permissions);
         if(returned !== undefined){
             switch(returned.type){
                 case 'status':
