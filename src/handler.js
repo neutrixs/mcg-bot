@@ -18,7 +18,7 @@ module.exports = {
         args = msg.content.replace(/\s\s+/g, ' ');
 
         //check if the current guild has a custom prefix. if so, set the prefix to that
-        if(msg.channel.type !== 'dm'){
+        if(msg.channel.type !== 'DM'){
             if(customprefix[msg.guild.id.toString()]){
                 config.PREFIX = customprefix[msg.guild.id.toString()]
             }

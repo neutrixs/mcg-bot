@@ -1,7 +1,7 @@
 module.exports = {
     name:'listreactionroles',
     execute(msg,varstore,reactionRoles,Permissions){
-        if(msg.channel.type == 'dm'){
+        if(msg.channel.type == 'DM'){
             msg.channel.send({embeds:[varstore.embednodm]})
             return
         }
