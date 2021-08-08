@@ -2,7 +2,7 @@ const discord = require('discord.js');
 const Intents = discord.Intents
 const Permissions = discord.Permissions
 const bot = new discord.Client({
-    partials:['MESSAGE','REACTION'],
+    partials:['MESSAGE','REACTION','CHANNEL'],
     intents:[
         Intents.FLAGS.GUILDS,
         Intents.FLAGS.GUILD_MESSAGES,
