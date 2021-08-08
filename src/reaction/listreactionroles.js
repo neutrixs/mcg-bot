@@ -1,11 +1,11 @@
 module.exports = {
     name:'listreactionroles',
-    execute(msg,varstore,reactionRoles){
+    execute(msg,varstore,reactionRoles,Permissions){
         if(msg.channel.type == 'dm'){
             msg.channel.send(varstore.embednodm)
             return
         }
-        if(!msg.member.hasPermission('MANAGE_MESSAGES')){
+        if(!msg.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)){
             msg.channel.send(varstore.embednopermission)
             return
         }
@@ -32,6 +32,6 @@ module.exports = {
         else{
             embed = embed.setTitle('There\'s no reaction roles in this server!')
         }
-        msg.channel.send(embed)
+        msg.channel.send({embeds:[embed]})
     }
 }
