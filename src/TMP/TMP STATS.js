@@ -5,8 +5,8 @@ module.exports = {
         const https = require('https');
         let embed = varstore.embed;
 
-        if(msg.channel.type == 'dm'){
-            msg.channel.send(varstore.embednodm);
+        if(msg.channel.type == 'DM'){
+            msg.channel.send({embeds:[varstore.embednodm]});
             return
         }
 
@@ -50,7 +50,7 @@ module.exports = {
                     }
                     embed = embed
                     .setDescription(`${play}/${totplay} players(${Math.floor(play/totplay*100)}%), ${queue} in queue`)
-                    msg.channel.send(embed)
+                    msg.channel.send({embeds:[embed]})
                 }
                 //specific channel
                 if(args[1] && isNaN(args[1]) == false && parseInt(args[1]) < res.response.length && parseInt(args[1])>=0) {
@@ -69,15 +69,14 @@ module.exports = {
                     .addField(':no_entry_sign: AFK Kick', `${current.afkenabled == true?':white_check_mark: Enabled':':x: Disabled'}`,true)
                     .addField('<:promods:780997888288751637> Promods', `${current.promods == true?':white_check_mark: Promods server':':x: Not Promods server'}`,true)
                     .addField(':partying_face: Event server', `${current.event == true || current.specialEvent == true?':white_check_mark: Event server':':x: Not Event server'}`, true);
-                    msg.channel.send(embed)
+                    msg.channel.send({embeds:[embed]})
                 }
                 if(parseInt(args[1]) >=(res.response.length) || parseInt(args[1]) < 0) {
-                    msg.channel.send(
-                        embed
+                    embed = embed
                         .setTitle('Invalid Server!')
                         .setDescription(`Use \`${config.PREFIX}tmpstats [0-${res.response.length-1}]\``)
                         .setColor('#FF0000')
-                    )
+                    msg.channel.send({embeds:[embed]})
                 }
             })
         })

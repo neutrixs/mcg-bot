@@ -5,8 +5,8 @@ module.exports= {
         const https = require('https')
         let embed = varstore.embed;
         if(args[3])return;
-        if(msg.channel.type == 'dm'){
-            msg.channel.send(varstore.embednodm)
+        if(msg.channel.type == 'DM'){
+            msg.channel.send({embeds:[varstore.embednodm]})
             return
         }
         https.get(`https://api.truckyapp.com/v2/traffic/top?game=${args[1]?args[1]:"ets2"}&server=${args[2]?args[2]:!args[1]?"sim1":args[1]=='ets2'?"sim1":"ussim"}`, res=> {
@@ -18,7 +18,7 @@ module.exports= {
                 res = JSON.parse(data);
                 console.log(res)
                 if(res.response == 0) {
-                    msg.channel.send(varstore.embederror.setDescription('wrong game name or server name!'))
+                    msg.channel.send({embeds:[varstore.embederror.setDescription('wrong game name or server name!')]})
                 }
                 else{
                     embed = embed
@@ -33,7 +33,7 @@ module.exports= {
                         embed = embed
                         .addField(cnt.name, `Player: ${cnt.players}\nCountry: ${cnt.country}\nSeverity: ${cnt.newSeverity}`, true)
                     }
-                    msg.channel.send(embed)
+                    msg.channel.send({embeds:[embed]})
                 }
             })
         })

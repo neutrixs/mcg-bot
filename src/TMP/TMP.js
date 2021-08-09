@@ -2,8 +2,7 @@ module.exports = {
     name:"tmp",
     description:"whatever you want",
     execute(msg,varstore,config){
-        msg.channel.send(
-            varstore.embed
+        let embed = varstore.embed
             .addField(
                 'List of TMP Commands:',
                 `\`${config.PREFIX}tmpstats\` - TruckersMP server status\n`+
@@ -11,6 +10,6 @@ module.exports = {
                 `\`${config.PREFIX}traffic\` - Truckersmp traffic`,
                 false
             )
-        )
+        msg.channel.send({embeds:[embed]})
     }
 }

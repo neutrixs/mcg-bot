@@ -4,8 +4,8 @@ module.exports = {
     execute(msg,varstore,bot){
         const https = require('https');
         let embed = varstore.embed;
-        if(msg.channel.type == 'dm'){
-            msg.channel.send(varstore.embednodm)
+        if(msg.channel.type == 'DM'){
+            msg.channel.send({embeds:[varstore.embednodm]})
             return
         }
 
@@ -32,7 +32,7 @@ module.exports = {
                     .setFooter(`Requested by ${msg.member.user.username}#${msg.member.user.discriminator}`)
                     .setTimestamp()
                     .setThumbnail('https://truckersmp.com/assets/img/avatar.png');
-                    msg.channel.send(embed)
+                    msg.channel.send({embeds:[embed]})
                 }
             })
         })
