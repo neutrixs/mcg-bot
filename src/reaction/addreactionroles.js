@@ -1,6 +1,6 @@
 module.exports = {
     'name':'addreactionroles',
-    execute(msg,args,varstore,config,bot,db,reactionRoles){
+    execute(msg,args,varstore,config,bot,db,reactionRoles,Permissions){
         let invalidFormat = varstore.embederror.setDescription(`Invalid format! see \`${config.PREFIX}help addreactionroles\` for more info`)
         let dataForLater = []
         if(msg.channel.type == 'DM'){
@@ -8,7 +8,7 @@ module.exports = {
             return
         }
         
-        if(!msg.member.hasPermission('MANAGE_MESSAGES')){
+        if(!msg.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)){
             msg.channel.send({embeds:[varstore.embednopermission]})
             return
         }
@@ -117,7 +117,9 @@ module.exports = {
             )
             msg.delete()
             msg.channel.send({embeds:[varstore.embed.setDescription('Added!')]}).then(msg => {
-                msg.delete({timeout:2000})
+                setTimeout(()=>{
+                    msg.delete()
+                },2000)
             })
         }
         fetchnSend()
