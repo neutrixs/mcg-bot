@@ -105,5 +105,4 @@ dist
 package-lock.json
 botconfigtest.js
 accountkey.json
-botconfig.js
 
