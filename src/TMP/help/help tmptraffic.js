@@ -25,7 +25,7 @@ module.exports = {
                 .addField('Game name:','ets2\nats',false)
                 .addField('Server name:',listserver,false);
 
-                msg.channel.send(embed)
+                msg.channel.send({embeds:[embed]})
             })
         })
     }
