@@ -2,11 +2,11 @@ module.exports = {
     name:'liststatus',
     execute(msg,varstore,customstatus,config){
         if(msg.author.id !== config.owner){
-            msg.channel.send(varstore.embednopermission)
+            msg.channel.send({embeds:[varstore.embednopermission]})
             return
         }
         if(customstatus.length == 0){
-            msg.channel.send(varstore.embed.setTitle('There\'s no custom status!'))
+            msg.channel.send({embeds:[varstore.embed.setTitle('There\'s no custom status!')]})
             return
         }
 
@@ -25,6 +25,6 @@ module.exports = {
                 false
             )
         }
-        msg.channel.send(embed)
+        msg.channel.send({embeds:[embed]})
     }
 }
