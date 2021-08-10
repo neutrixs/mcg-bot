@@ -129,7 +129,7 @@ module.exports = {
                     cmdlist.get('react').execute(msg,varstore,args,config)
                 break;
                 case 'prefix':
-                    cmdlist.get('prefix').execute(msg,bot,varstore,args,config,customprefix,db)
+                    cmdlist.get('prefix').execute(msg,bot,varstore,args,config,customprefix,db,Permissions)
                 break;
 
 
