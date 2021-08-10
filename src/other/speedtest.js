@@ -41,9 +41,9 @@ module.exports = {
             if(s >= 530 && s < 540) {embed=embed.setColor('#00ffd5')}
             if(s >= 540) {embed=embed.setColor('#00FFFF')}
 
-            msg.channel.send(embed)
+            msg.channel.send({embeds:[embed]})
         }).catch(e=>{
-            msg.channel.send(varstore.embederror.setDescription(`\`\`\`${e}\`\`\``))
+            msg.channel.send({embeds:[varstore.embederror.setDescription(`\`\`\`${e}\`\`\``)]})
         })
     }
 }

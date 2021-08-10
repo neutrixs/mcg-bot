@@ -8,6 +8,6 @@ module.exports = {
         .setTitle(`BOT Owner: ${config.ownername}`)
         .setColor([0,255,0])
         .setAuthor('Credit');
-        msg.channel.send(embed)
+        msg.channel.send({embeds:[embed]})
     }
 }
