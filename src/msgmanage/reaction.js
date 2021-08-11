@@ -1,8 +1,13 @@
 module.exports = {
     name:"react",
     description:"react a message. requires manage messages",
-    execute(msg,varstore,args,config){
+    execute(msg,varstore,args,config,Permissions){
         var embed = varstore.embed;
+
+        if(!msg.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)){
+            msg.channel.send({embeds:[varstore.embednopermission]})
+        }
+        
         if(!args[1]){
             embed = embed
             .setDescription(`Please specify something! see \`${config.PREFIX}help react\` for more info.`)

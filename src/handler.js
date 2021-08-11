@@ -125,7 +125,7 @@ module.exports = {
                     cmdlist.get('tmptraffic').execute(msg,varstore,args,bot)
                 break;
                 case 'react':
-                    cmdlist.get('react').execute(msg,varstore,args,config)
+                    cmdlist.get('react').execute(msg,varstore,args,config,Permissions)
                 break;
                 case 'prefix':
                     cmdlist.get('prefix').execute(msg,bot,varstore,args,config,customprefix,db,Permissions)
