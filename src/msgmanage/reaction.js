@@ -6,6 +6,7 @@ module.exports = {
 
         if(!msg.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)){
             msg.channel.send({embeds:[varstore.embednopermission]})
+            return
         }
 
         if(!args[1]){
