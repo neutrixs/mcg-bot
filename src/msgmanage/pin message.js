@@ -1,42 +1,38 @@
 module.exports = {
     name:"pin",
     description:"pin a message in a channel",
-    execute(msg,varstore,args,config){
-        if(msg.channel.type == 'dm'){
-            msg.channel.send(varstore.embednodm)
+    execute(msg,varstore,args,config,Permissions){
+        if(msg.channel.type == 'DM'){
+            msg.channel.send({embeds:[varstore.embednodm]})
             return
         }
-        if(!msg.member.hasPermission('MANAGE_MESSAGES')){
-            msg.channel.send(varstore.embednopermission)
+        if(!msg.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)){
+            msg.channel.send({embeds:[varstore.embednopermission]})
             return
         }
         if(!args[1]){
-            msg.channel.send(
-                varstore.embed
+            embed = varstore.embed
                 .setDescription(`Please specify something! see \`${config.PREFIX}help pin\` for more info.`)
                 .setColor('#FF0000')
-            )
+            msg.channel.send({embeds:[embed]})
             return
         }
         if(isNaN(args[1]) == true){
-            msg.channel.send(
-                varstore.embederror
+            embed = varstore.embederror
                 .setDescription('Message ID must be a number!')
-            )
+            msg.channel.send({embeds:[embed]})
         }
         msg.channel.messages.fetch(args[1]).then(msg=>{
             msg.pin().catch(e=>{
-                msg.channel.send(
-                    varstore.embederror
+                embed = varstore.embederror
                     .setDescription(`\`\`\`${e}\`\`\``)
-                )
+                msg.channel.send({embeds:[embed]})
             })
         })
         .catch(e=>{
-            msg.channel.send(
-                varstore.embederror
+            embed = varstore.embederror
                 .setDescription(`\`\`\`${e}\`\`\``)
-            )
+            msg.channel.send({embeds:[embed]})
         })
         msg.delete();
     }

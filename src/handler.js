@@ -116,7 +116,7 @@ module.exports = {
                     cmdlist.get('insult').execute(msg,config)
                 break;
                 case 'pin':
-                    cmdlist.get('pin').execute(msg,varstore,args,config)
+                    cmdlist.get('pin').execute(msg,varstore,args,config,Permissions)
                 break;
                 case 'tmpstats':
                     cmdlist.get('tmpstats').execute(msg,varstore,args,config,bot)
