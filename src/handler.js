@@ -107,8 +107,7 @@ module.exports = {
                     cmdlist.get('embed').execute(msg,varstore,args,config)
                 break;
                 case 'ann':
-                case 'announce':
-                    cmdlist.get('ann').execute(msg,varstore,args,config)
+                    cmdlist.get('ann').execute(msg,varstore,args,config,Permissions)
                 break;
                 case 'file':
                     cmdlist.get('file').execute(msg,varstore,args)
