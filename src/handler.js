@@ -104,7 +104,7 @@ module.exports = {
                     cmdlist.get('say').execute(msg,varstore,args,config)
                 break;
                 case 'embed':
-                    cmdlist.get('embed').execute(msg,varstore,args,config)
+                    cmdlist.get('embed').execute(msg,varstore,args,config,Permissions)
                 break;
                 case 'ann':
                     cmdlist.get('ann').execute(msg,varstore,args,config,Permissions)

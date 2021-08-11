@@ -1,7 +1,7 @@
 module.exports = {
     name:"embed",
     description:"embed something",
-    execute(msg,varstore,args,config){
+    execute(msg,varstore,args,config,Permissions){
         let embed = varstore.embed;
         let content = msg.content.substr(config.PREFIX.length+5);
 
@@ -9,19 +9,19 @@ module.exports = {
         content = content.replace(/\s\s+/g,' ');
 
         //-C for clear, --member to tag member, -I for images, -T for title, --thumbnail for thumbnail, -P for plaintext, --color for color, --url to add to title.
-        if(msg.channel.type == 'dm'){
-            msg.channel.send(varstore.embednodm)
+        if(msg.channel.type == 'DM'){
+            msg.channel.send({embeds:[varstore.embednodm]})
             return
         }
-        if(!msg.member.hasPermission('MANAGE_MESSAGES')){
-            msg.channel.send(varstore.embednopermission)
+        if(!msg.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)){
+            msg.channel.send({embeds:[varstore.embednopermission]})
             return
         }
         if(!args[1]){
-            msg.channel.send(embed
+            embed = embed
                 .setDescription(`Please specify something! see \`${config.PREFIX}help embed\` for more info.`)  
                 .setColor('#FF0000')  
-            )
+            msg.channel.send({embeds:[embed]})
             return
         }
 
@@ -100,18 +100,18 @@ module.exports = {
 
         //send message
         if(msg.guild.channels.cache.get(sendtochannel) == undefined){
-            msg.channel.send(embed
+            embed = embed
                 .setDescription('Invalid channel!')
                 .setColor('#FF0000')    
-            )
+            msg.channel.send({embeds:[embed]})
             return
         }
-        msg.guild.channels.cache.get(sendtochannel).send(`${tagmember} ${plaintext}`,{embed:embed})
+        msg.guild.channels.cache.get(sendtochannel).send({content:`${tagmember} ${plaintext}`,embeds:[embed]})
         .catch(e=>{
-            msg.channel.send(varstore.embederror
+            embed = varstore.embederror
                 .setDescription(`\`\`\`${e}\`\`\``)
                 .setColor('#FF0000')
-            )
+            msg.channel.send({embeds:[embed]})
         })
     }
 }
