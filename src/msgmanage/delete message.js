@@ -1,41 +1,41 @@
 module.exports = {
     name:"del",
     description:"delete message",
-    execute(msg,varstore,args,config){
-        if(msg.channel.type == 'dm'){
-            msg.channel.send(varstore.embednodm);
+    execute(msg,varstore,args,config,Permissions){
+        if(msg.channel.type == 'DM'){
+            msg.channel.send({embeds:[varstore.embednodm]});
             return;
         }
-        if(!msg.member.hasPermission('MANAGE_MESSAGES')){
-            msg.channel.send(varstore.embednopermission)
+        if(!msg.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)){
+            msg.channel.send({embeds:[varstore.embednopermission]})
             return;
         }
         if(!args[1]) {
-            msg.channel.send(varstore.embed
+            embed = varstore.embed
                 .setDescription(`Please specify an amount!\nMax amount: 5000\n\ntype \`${config.PREFIX}help del\` for more info.`)
                 .setColor('#FF0000')    
-            )
+            msg.channel.send({embeds:[embed]})
             return;
         }
         if(isNaN(args[1]) == true){
-            msg.channel.send(varstore.embed
+            embed = varstore.embed
                 .setDescription('Please specify a number! not something else')
                 .setColor('#FF0000')    
-            )
+            msg.channel.send({embeds:[embed]})
             return;
         }
         if(parseInt(args[1]) < 0) {
-            msg.channel.send(varstore.embed
+            embed = varstore.embed
                 .setDescription('Gabisa mines......')
                 .setColor('#FF0000')
-            )
+            msg.channel.send({embeds:[embed]})
             return;
         }
         if(parseInt(args[1]) > 5000) {
-            msg.channel.send(varstore.embed
+            embed = varstore.embed
                 .setDescription('Max 5000......')
                 .setColor('#FF0000')
-            )
+            msg.channel.send({embeds:[embed]})
             return;
         }
         if(parseInt(args[1]) < 100){

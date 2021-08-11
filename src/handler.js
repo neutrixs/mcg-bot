@@ -98,7 +98,7 @@ module.exports = {
 
                 case 'del':
                 case 'delete':
-                    cmdlist.get('del').execute(msg,varstore,args,config)
+                    cmdlist.get('del').execute(msg,varstore,args,config,Permissions)
                 break;
                 case 'say':
                     cmdlist.get('say').execute(msg,varstore,args,config)
