@@ -4,6 +4,11 @@ module.exports = {
     execute(msg,varstore,args,config,Permissions){
         var embed = varstore.embed;
 
+        if(msg.channel.type == 'DM'){
+            msg.channel.send({embeds:[varstore.embednodm]})
+            return
+        }
+
         if(!msg.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)){
             msg.channel.send({embeds:[varstore.embednopermission]})
             return
