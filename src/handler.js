@@ -110,7 +110,7 @@ module.exports = {
                     cmdlist.get('ann').execute(msg,varstore,args,config,Permissions)
                 break;
                 case 'file':
-                    cmdlist.get('file').execute(msg,varstore,args)
+                    cmdlist.get('file').execute(msg,varstore,args,Permissions)
                 break;
                 case 'insult':
                     cmdlist.get('insult').execute(msg,config)
