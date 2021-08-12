@@ -101,7 +101,7 @@ module.exports = {
                     cmdlist.get('del').execute(msg,varstore,args,config,Permissions)
                 break;
                 case 'say':
-                    cmdlist.get('say').execute(msg,varstore,args,config)
+                    cmdlist.get('say').execute(msg,varstore,args,config,Permissions)
                 break;
                 case 'embed':
                     cmdlist.get('embed').execute(msg,varstore,args,config,Permissions)

@@ -1,23 +1,23 @@
 module.exports = {
     name:"say",
     description:"say something idk",
-    execute(msg,varstore,args,config){
+    execute(msg,varstore,args,config,Permissions){
         let sendthis = msg.content.substr(config.PREFIX.length+3);
         //remove whitespace
         sendthis = sendthis.replace(/\s\s+/g, ' ');
 
-        if(msg.channel.type == 'dm'){
-            msg.channel.send(varstore.embednodm)
+        if(msg.channel.type == 'DM'){
+            msg.channel.send({embeds:[varstore.embednodm]})
             return
         }
-        if(!msg.member.hasPermission('MANAGE_MESSAGES')){
-            msg.channel.send(varstore.embednopermission)
+        if(!msg.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)){
+            msg.channel.send({embeds:[varstore.embednopermission]})
             return
         }
         if(!args[1]) {
-            msg.channel.send(varstore.embednodm
+            embed = varstore.embednodm
                 .setDescription(`Please specify something! see \`${config.PREFIX}help say\` for more info.`)    
-            )
+            msg.channel.send({embeds:[embed]})
             return
         }
 
@@ -45,19 +45,19 @@ module.exports = {
         }
 
         if(msg.guild.channels.cache.get(sendtochannel) == undefined){
-            msg.channel.send(varstore.embed
+            embed = varstore.embed
                 .setDescription('Invalid channel!')
                 .setColor('#FF0000')    
-            )
+            msg.channel.send({embeds:[embed]})
             return;
         }
 
-        msg.guild.channels.cache.get(sendtochannel).send(sendthis,{files:img})
+        msg.guild.channels.cache.get(sendtochannel).send({content:sendthis,files:img})
         .catch(e=>{
-            msg.channel.send(varstore.embederror
+            embed = varstore.embederror
                 .setDescription(`\`\`\`${e}\`\`\``)
                 .setColor('#FF0000') 
-            )
+            msg.channel.send({embeds:[embed]})
         })
     }
 }
