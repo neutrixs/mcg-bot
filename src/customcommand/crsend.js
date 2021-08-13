@@ -7,7 +7,9 @@ module.exports = {
                     if(data.response.embed == 'NULL_VALUE'){
                         data.response.embed = null
                     }
-                    msg.channel.send(data.response.msg,{embed:data.response.embed})
+                    if(data.response.embed) data.response.embed = [data.response.embed]
+                    if(!data.response.msg) data.response.msg = null
+                    msg.channel.send({content:data.response.msg,embeds:data.response.embed})
                 }
             }
         }
