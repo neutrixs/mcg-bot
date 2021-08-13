@@ -35,7 +35,7 @@
 		<li>Create a project on https://console.firebase.google.com</li>
 		<li>Go to firestore > Create database</li>
 		<li>Go to project settings > Service accounts > Generate new private key</li>
-		<li>Move the private key to your project's home directory and rename it to `accountkey.json`</li>
+		<li>Move the private key to your project's home directory and rename it to <code>accountkey.json</code></li>
 	</ol>
 
 - **Setting up `botconfig.js`**
