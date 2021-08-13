@@ -3,8 +3,8 @@ module.exports = {
     execute(msg,varstore,customcommand){
         var listcommand = ''
 
-        if(msg.channel.type == 'dm'){
-            msg.channel.send(varstore.embednodm)
+        if(msg.channel.type == 'DM'){
+            msg.channel.send({embeds:[varstore.embednodm]})
             return
         }
 
@@ -15,15 +15,15 @@ module.exports = {
         }
 
         if(listcommand == ''){
-            msg.channel.send(varstore.embed
+            embed = varstore.embed
                 .setDescription('There is no custom reaction in this server!')    
-            )
+            msg.channel.send({embeds:[embed]})
             return
         }
 
         embed = varstore.embed
         .setTitle('List of custom reaction in this server:')
         .setDescription(listcommand)
-        msg.channel.send(embed)
+        msg.channel.send({embeds:[embed]})
     }
 }

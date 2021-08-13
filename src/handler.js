@@ -139,10 +139,10 @@ module.exports = {
 
 
                 case 'acr':
-                    updatecustomcmd = cmdlist.get('acr').execute(msg,config,varstore,bot,db,customcommand)
+                    updatecustomcmd = cmdlist.get('acr').execute(msg,config,varstore,bot,db,customcommand,Permissions)
                 return updatecustomcmd
                 case 'dcr':
-                    deletecustomcmd = cmdlist.get('dcr').execute(msg,config,varstore,bot,db,customcommand)
+                    deletecustomcmd = cmdlist.get('dcr').execute(msg,config,varstore,bot,db,customcommand,Permissions)
                 return deletecustomcmd
                 case 'lcr':
                     cmdlist.get('lcr').execute(msg,varstore,customcommand)

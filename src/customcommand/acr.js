@@ -1,23 +1,23 @@
 module.exports = {
     name:"acr",
     description:"add custom reaction",
-    execute(msg,config,varstore,bot,db,customcommand){
+    execute(msg,config,varstore,bot,db,customcommand,Permissions){
         let invalidFormat = varstore.embed
         .setColor('#FF0000')
         .setDescription(`Invalid format! see \`${config.PREFIX}help acr\` for more info`)
 
-        if(msg.channel.type == 'dm'){
-            msg.channel.send(varstore.embednodm)
+        if(msg.channel.type == 'DM'){
+            msg.channel.send({embeds:[varstore.embednodm]})
             return
         }
-        if(!msg.member.hasPermission('MANAGE_MESSAGES')) {
-            msg.channel.send(varstore.embednopermission)
+        if(!msg.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)) {
+            msg.channel.send({embeds:[varstore.embednopermission]})
             return
         }
 
         var content = msg.content.substr(config.PREFIX.length+4)
         if((content.split('"')).length < 5){
-            msg.channel.send(invalidFormat)
+            msg.channel.send({embeds:[invalidFormat]})
             return
         }
 
@@ -28,7 +28,7 @@ module.exports = {
             (content.split('"'))[4] !== '' &&
             ((content.split('"'))[4].replace(/\s\s+/g,'').replace(/\s+/,'')).substr(0,1) !== '{'
         ){
-            msg.channel.send(invalidFormat)
+            msg.channel.send({embeds:[invalidFormat]})
             return
         }
 
@@ -45,7 +45,7 @@ module.exports = {
                 JSON.parse(embedinput)
             }
             catch(e){
-                msg.channel.send(varstore.embederror.setDescription(`\`\`\`${e}\`\`\``))
+                msg.channel.send({embeds:[varstore.embederror.setDescription(`\`\`\`${e}\`\`\``)]})
                 return
             }
             responseembed = JSON.parse(embedinput)
@@ -62,7 +62,7 @@ module.exports = {
             }
         }
 
-        msg.channel.send(varstore.embed.setDescription('Added!').setColor('#00FFFF'))
+        msg.channel.send({embeds:[varstore.embed.setDescription('Added!').setColor('#00FFFF')]})
         customcommand.Data = customcommand.Data.concat(newcommand)
         db.collection(bot.user.id).doc('cc').set(
             {
