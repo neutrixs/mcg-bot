@@ -17,9 +17,11 @@
  # Installation
  - **Downloading the source code**
 	 - **Manual download**
-		 1. Go to releases
-		 2. Select version
-		 3. Download the source code
+	 	<ol type="1">
+			<li>Go to releases</li>
+			<li>Select version</li>
+			<li>Download the source code</li>
+		</ol>
 	- **Using GIT,**
 		 **Use either one of these:**
 		- `git clone git@github.com:neutrixs/mcg-bot.git`
@@ -29,10 +31,12 @@
 		- `git clone git@github.com:neutrixs/mcg-bot.git#1.1`
 
 - **Setting up Firebase Firestore**
-	1. Create a project on https://console.firebase.google.com
-	2. Go to firestore > Create database
-	3. Go to project settings > Service accounts > Generate new private key
-	4. Move the private key to your project's home directory and rename it to `accountkey.json`
+	<ol type="1">
+		<li>Create a project on https://console.firebase.google.com</li>
+		<li>Go to firestore > Create database</li>
+		<li>Go to project settings > Service accounts > Generate new private key</li>
+		<li>Move the private key to your project's home directory and rename it to `accountkey.json`</li>
+	</ol>
 
 - **Setting up `botconfig.js`**
 	- Set up default prefix, owner discord id, bot token, and other stuff there
