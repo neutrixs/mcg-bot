@@ -9,7 +9,7 @@ module.exports = {
             })
             r.on('end',()=>{
                 data = JSON.parse(data);
-                msg.channel.send(data.joke)
+                msg.channel.send({content:data.joke})
             })
         })
     }

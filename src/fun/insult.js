@@ -16,7 +16,7 @@ module.exports = {
                 .replace(/&gt;/g, '>')
                 .replace(/&lt;/g, '<');
 
-                msg.channel.send(`${whoInsulted} ${insult}`)
+                msg.channel.send({content:`${whoInsulted} ${insult}`})
             })
         })
     }

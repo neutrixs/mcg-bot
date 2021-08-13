@@ -12,7 +12,7 @@ module.exports = {
             `\`${config.PREFIX}apod\` - Astronomy Picture of the Day\n`+
             `\`${config.PREFIX}insult\` - Insult someone <:mflush:815790736498753547>`
         )
-        msg.channel.send(embed)
+        msg.channel.send({embeds:[embed]})
     }
     
 }

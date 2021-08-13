@@ -4,6 +4,6 @@ module.exports = {
     execute(msg,embed){
         embed = embed
         .setTitle('Shows random yomama jokes')
-        msg.channel.send(embed)
+        msg.channel.send({embeds:[embed]})
     }
 }

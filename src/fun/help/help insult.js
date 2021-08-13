@@ -7,6 +7,6 @@ module.exports = {
             `**Format**: \`${config.PREFIX}insult [someone]\`\n`+
             `[] = Optional`
         )
-        msg.channel.send(embed)
+        msg.channel.send({embeds:[embed]})
     }
 }

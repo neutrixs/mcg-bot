@@ -9,9 +9,9 @@ module.exports = {
             })
             r.on('end',()=>{
                 data = JSON.parse(data);
-                msg.channel.send(data.setup)
+                msg.channel.send({content:data.setup})
                 setTimeout(function(){
-                    msg.channel.send(data.punchline)
+                    msg.channel.send({content:data.punchline})
                 },2500)
             })
         })

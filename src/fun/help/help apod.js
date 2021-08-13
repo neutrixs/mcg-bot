@@ -4,6 +4,6 @@ module.exports = {
     execute(msg,embed){
         embed = embed
         .setTitle('Send NASA\'s Astronomy Picture Of the Day')
-        msg.channel.send(embed)
+        msg.channel.send({embeds:[embed]})
     }
 }
