@@ -4,6 +4,6 @@ module.exports = {
 
         embed = embed
         .setDescription(`**Format:** \`${config.PREFIX}ui [User ID/Tag the user]\`\n**[]** = Optional`)
-        msg.channel.send(embed)
+        msg.channel.send({embeds:[embed]})
     }
 }

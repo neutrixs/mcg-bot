@@ -4,6 +4,6 @@ module.exports = {
     execute(msg,embed){
         embed = embed
         .setTitle('Shows Credit of this bot')
-        msg.channel.send(embed)
+        msg.channel.send({embeds:[embed]})
     }
 }

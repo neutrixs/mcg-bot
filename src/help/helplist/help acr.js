@@ -18,6 +18,6 @@ module.exports = {
         .setFooter(
             `Permission required:\nMANAGE_MESSAGES`
         )
-        msg.channel.send(embed)
+        msg.channel.send({embeds:[embed]})
     }
 }

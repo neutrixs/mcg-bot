@@ -5,6 +5,6 @@ module.exports = {
         .setTitle("Enable bot's custom status")
         .setFooter('Permission required: BOT OWNER')
 
-        msg.channel.send(embed)
+        msg.channel.send({embeds:[embed]})
     }
 }

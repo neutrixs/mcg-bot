@@ -4,6 +4,6 @@ module.exports = {
     execute(msg,embed){
         embed = embed
         .setTitle('Test this bot\'s internet speed')
-        msg.channel.send(embed)
+        msg.channel.send({embeds:[embed]})
     }
 }

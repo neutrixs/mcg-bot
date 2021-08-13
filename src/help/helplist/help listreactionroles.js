@@ -5,6 +5,6 @@ module.exports = {
         .setTitle('Shows this server\'s reaction roles')
         .setFooter('Permission required: MANAGE_MESSAGES')
 
-        msg.channel.send(embed)
+        msg.channel.send({embeds:[embed]})
     }
 }

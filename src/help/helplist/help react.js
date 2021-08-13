@@ -7,6 +7,6 @@ module.exports = {
             `This also remove any backslash, so you can do it with animated emoji(if you don't have nitro)`
         )
         .setFooter(`Permission required: MANAGE_MESSAGES`)
-        msg.channel.send(embed)
+        msg.channel.send({embeds:[embed]})
     }
 }

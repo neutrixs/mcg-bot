@@ -65,7 +65,7 @@ module.exports = {
                 `\`${config.PREFIX}disablestatus\` - Disable custom status`
             )
 
-            msg.channel.send(embed)
+            msg.channel.send({embeds:[embed]})
         }
         else{
             switch(args[1]){

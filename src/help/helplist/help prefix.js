@@ -14,6 +14,6 @@ module.exports = {
             `Required permission: \`MANAGE_GUILD\``,
             false
         )
-        msg.channel.send(embed)
+        msg.channel.send({embeds:[embed]})
     }
 }

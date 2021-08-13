@@ -24,6 +24,6 @@ module.exports = {
             `${config.PREFIX}addreactionroles 123456789012345678 :flushed:=@roles1, :joy:=@roles2`
         )
         .setFooter('Permission required: MANAGE_MESSAGES')
-        msg.channel.send(embed)
+        msg.channel.send({embeds:[embed]})
     }
 }

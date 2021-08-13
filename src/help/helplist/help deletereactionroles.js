@@ -8,6 +8,6 @@ module.exports = {
             `type \`${config.PREFIX}listreactionroles\` to get the list and ID of it`
         )
         .setFooter('Permission required: MANAGE_MESSAGES')
-        msg.channel.send(embed)
+        msg.channel.send({embeds:[embed]})
     }
 }

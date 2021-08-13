@@ -10,6 +10,6 @@ module.exports = {
             `Cannot delete message older than 14 days ago`
         )
         .setFooter('Permission required:\nMANAGE_MESSAGES');
-        msg.channel.send(embed)
+        msg.channel.send({embeds:[embed]})
     }
 }
