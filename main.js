@@ -1,15 +1,10 @@
 const discord = require('discord.js');
 const Intents = discord.Intents
 const Permissions = discord.Permissions
+Intents.ALL = Object.values(Intents.FLAGS).reduce((acc, p) => acc | p, 0);
 const bot = new discord.Client({
     partials:['MESSAGE','REACTION','CHANNEL'],
-    intents:[
-        Intents.FLAGS.GUILDS,
-        Intents.FLAGS.GUILD_MESSAGES,
-        Intents.FLAGS.DIRECT_MESSAGES,
-        Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-        Intents.FLAGS.GUILD_WEBHOOKS
-    ]
+    intents:[Intents.ALL]
 });
 const config = require('./botconfig');
 let cmdlist = new discord.Collection();
