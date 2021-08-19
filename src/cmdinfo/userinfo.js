@@ -1,80 +1,90 @@
-module.exports = {
-    name:"userinfo",
-    description:"get user info",
-    execute(bot,msg,varstore,args){
-        var embed = varstore.embed
-        var requestedBy = `Requested by ${msg.author.username}#${msg.author.discriminator}`
+async function info(bot,msg,varstore,args){
+    let embed = varstore.embed,
+    userInfo,
+    userID,
+    usingGuildUser = true,
+    userActivity,
+    dateFormat,
+    joinedDiscord,
+    avatarURL,
+    username,
+    discriminator,
+    isBOT,
+    status
 
+    args[1] = args[1]?.replace('<@','').replace('!','').replace('>','') //if tagged
 
-        async function getnsend(){
-            if(args[1]){
-                args[1] = args[1].replace('<@','').replace('!','').replace('>','')
-                if(isNaN(args[1])){
-                    embed = embed
-                    .setDescription('User ID must be a number!(or tag the person if you don\'t know how)')
-                    .setColor('#FF0000')
-                    msg.channel.send(embed)
-                    return
-                }
-                msg.author = bot.users.cache.find(m=>m.id==args[1])
-                if(msg.author == undefined){
-                    try{
-                        msg.author = await bot.users.fetch(args[1])
-                    }
-                    catch(e){
-                        msg.channel.send(varstore.embederror.setDescription(e))
-                        return
-                    }
-                }
-            }
-
-            //activity
-            useractivity = 'None';
-            if(msg.author.presence.activities.toString() !== ''){
-                if(msg.author.presence.activities[0].name == 'Spotify'){
-                    spotify = msg.author.presence.activities[0];
-                    useractivity = `Spotify:\n${spotify.details} by ${spotify.state}`
-                }
-                else{
-                    presence = msg.author.presence.activities[0];
-                    useractivity = `${presence.type.toLowerCase()} ${presence.name}`
-                }
-            }
-
-            //joined discord
-            dateformat = {
-                day:'2-digit',
-                month:'short',
-                year:'numeric',
-                hour:'2-digit',
-                minute:'2-digit',
-                second:'2-digit',
-                timeZone:'Asia/Jakarta'
-            }
-            joinedDiscord = msg.author.createdAt.toLocaleString('en-GB',dateformat)
-            joinedDiscord = joinedDiscord+' WIB'
-
-            //avatar
-            useravatar = msg.author.avatarURL().toString()
-            useravatar = useravatar.replace('.webp','?size=4096')
-
-            embed = embed
-            .setColor('#00FF00')
-            .setAuthor('USER INFO')
-            .setTitle(`Username: ${msg.author.username}#${msg.author.discriminator}`)
-            .addField('User ID',msg.author.id,true)
-            .addField('isBOT',msg.author.bot,true)
-            .addField('Status',msg.author.presence.status,true)
-            .addField('Joined Discord',joinedDiscord,true)
-            .addField('Activity',useractivity,true)
-
-            .addField('Avatar URL',useravatar,false)
-            .setThumbnail(useravatar)
-
-            .setFooter(requestedBy)
-            .setTimestamp()
-            msg.channel.send(embed)
-        }
-        getnsend()
+    if(args[1] && isNaN(args[1])){
+        let temp = varstore.embederror.setDescription('User ID must be a number!(or tag the person if you don\'t know how)')
+        msg.channel.send({embeds:[temp]})
+        return
     }
+
+    userID = args[1] ? args[1] : msg.author.id
+
+    userInfo = msg.guild?.members.cache.find(m=>m.id == userID)
+
+    if(!userInfo){
+        userInfo = await bot.users.fetch(userID)
+        usingGuildUser = false
+    }
+
+    userActivity = 'Unknown'
+    if(userInfo.presence?.activities){
+        if(userInfo.presence.activities[0].name == 'Spotify'){
+            let spotify = userInfo.presence.activities[0];
+            userActivity = `Spotify:\n${spotify.details} by ${spotify.state}`
+        }
+        else{
+            let presence = userInfo.presence.activities[0];
+            userActivity = `${presence.type.toLowerCase()} ${presence.name}`
+        }
+    }
+
+    dateFormat = {
+        day:'2-digit',
+        month:'short',
+        year:'numeric',
+        hour:'2-digit',
+        minute:'2-digit',
+        second:'2-digit',
+        timeZone:'Asia/Jakarta'
+    }
+
+    joinedDiscord = usingGuildUser ? userInfo.user.createdAt : userInfo.createdAt
+    joinedDiscord = joinedDiscord.toLocaleString('en-GB',dateFormat) + ' WIB'
+
+    avatarURL = usingGuildUser ? userInfo.user.avatarURL() : userInfo.avatarURL()
+    avatarURL = avatarURL.replace('.webp','?size=4096')
+
+    username = usingGuildUser ? userInfo.user.username : userInfo.username
+
+    discriminator = usingGuildUser ? userInfo.user.discriminator : userInfo.discriminator
+
+    isBOT = usingGuildUser ? userInfo.user.bot : userInfo.bot
+    isBOT = isBOT.toString()
+
+    status = usingGuildUser ? userInfo.presence ? userInfo.presence.status : 'None' : 'Unknown'
+
+    embed = (embed
+        .setColor('#00FF00')
+        .setAuthor('USER INFO')
+        .setTitle(`Username: ${username}#${discriminator}`)
+        .addField('USER ID',userID,true)
+        .addField('isBOT',isBOT,true)
+        .addField('Status',status,true)
+        .addField('Joined Discord',joinedDiscord,true)
+        .addField('Activity',userActivity,true)
+        .addField('Avatar URL',avatarURL,true)
+        .setThumbnail(avatarURL)
+        .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`)
+        .setTimestamp()
+    )
+
+    msg.channel.send({embeds:[embed]})
+}
+
+module.exports = {
+    name:'userinfo',
+    execute:info
 }
