@@ -25,7 +25,14 @@ async function info(bot,msg,varstore,args){
     userInfo = msg.guild?.members.cache.find(m=>m.id == userID)
 
     if(!userInfo){
-        userInfo = await bot.users.fetch(userID)
+        try{
+            userInfo = await bot.users.fetch(userID)
+        }
+        catch(e){
+            let embedError = varstore.embederror.setDescription('```'+e+'```')
+            msg.channel.send({embeds:[embedError]})
+            return
+        }
         usingGuildUser = false
     }
 
