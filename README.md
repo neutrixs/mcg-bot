@@ -7,6 +7,7 @@
  - `announce` command removed. use `ann` instead
  - Update to new MCG logo on `ann` command
  - Fix permission mistake on `react` command
+ - User info command rewritten almost entirely
  
  # Requirements
  
@@ -32,7 +33,7 @@
 
 - **Setting up Firebase Firestore**
 	<ol type="1">
-		<li>Create a project on https://console.firebase.google.com</li>
+		<li>Create a project on <a href="https://console.firebase.google.com">https://console.firebase.google.com</a></li>
 		<li>Go to firestore > Create database</li>
 		<li>Go to project settings > Service accounts > Generate new private key</li>
 		<li>Move the private key to your project's home directory and rename it to <code>accountkey.json</code></li>
@@ -44,4 +45,3 @@
 - **Running the bot**
 	- Install all required module `npm install`
 	- run the bot `node .`
-
