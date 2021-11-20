@@ -3,6 +3,7 @@ import {Client, Message, ClientEvents} from 'discord.js'
 interface eachCommandParamOptions {
     client: Client
     msg: Message
+    next: () => void
 }
 
 interface eachCommand{
