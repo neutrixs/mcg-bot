@@ -1,4 +1,4 @@
-import {Client, Message} from 'discord.js'
+import {Client, Message, ClientEvents} from 'discord.js'
 
 interface eachCommandParamOptions {
     client: Client
@@ -9,6 +9,7 @@ interface eachCommand{
     name:string
     description:string
     test: RegExp
+    on: keyof ClientEvents
     execute: (options: eachCommandParamOptions) => any
 }
 
