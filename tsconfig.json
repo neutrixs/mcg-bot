@@ -6,7 +6,8 @@
         "lib":["ES2021"],
         "allowSyntheticDefaultImports": true,
         "noImplicitAny": true,
-        "outDir": "./dist"
+        "outDir": "./dist",
+        "removeComments": true,
     },
     "files":[
         "./main.ts"
