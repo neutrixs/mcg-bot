@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/neutrixs/mcg-bot.git"
   },
-  "engines":{
-    "node":">=16.6.0"
+  "engines": {
+    "node": ">=16.6.0"
   },
   "keywords": [],
   "author": "",
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/neutrixs/mcg-bot/issues"
   },
-  "homepage": "https://github.com/neutrixs/mcg-bot#readme"
+  "homepage": "https://github.com/neutrixs/mcg-bot#readme",
+  "dependencies": {
+    "discord.js": "^13.3.1"
+  }
 }
