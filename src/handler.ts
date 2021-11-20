@@ -32,15 +32,16 @@ export default class Handler {
         const contentNoPrefix = msg.content.substr(this.prefix.length)
         const paramOptions:eachCommandParamOptions = {
             client:this.client,
-            msg:msg,
-            next: function(){}
+            msg:msg
         }
+
+        const next = function(){}
         
         for(const command of this.commands){
             const isMatched = (command.noPrefixMatch ? content : contentNoPrefix).match(command.test)
             if(!isMatched) continue
 
-            command.execute(paramOptions)
+            command.execute(paramOptions,next)
         }
     }
 }

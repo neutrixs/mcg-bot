@@ -3,8 +3,9 @@ import {Client, Message, ClientEvents} from 'discord.js'
 interface eachCommandParamOptions {
     client: Client
     msg: Message
-    next: () => void
 }
+
+type next = () => void
 
 interface eachCommand{
     name:string
@@ -12,7 +13,7 @@ interface eachCommand{
     test: RegExp
     on: keyof ClientEvents
     noPrefixMatch?: boolean
-    execute: (options: eachCommandParamOptions) => any
+    execute: (options: eachCommandParamOptions, next?:next) => any
 }
 
 type commands = eachCommand[]
