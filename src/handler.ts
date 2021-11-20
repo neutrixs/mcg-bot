@@ -35,13 +35,18 @@ export default class Handler {
             msg:msg
         }
 
-        const next = function(){}
+        let isContinue:boolean = false
+        const next = function(){
+            isContinue = true
+        }.bind(this)
         
         for(const command of this.commands){
             const isMatched = (command.noPrefixMatch ? content : contentNoPrefix).match(command.test)
             if(!isMatched) continue
 
             command.execute(paramOptions,next)
+
+            if(!isContinue) break
         }
     }
 }
