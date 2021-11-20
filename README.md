@@ -1,3 +1,0 @@
-# mcg-bot
-
-yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
