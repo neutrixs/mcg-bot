@@ -11,6 +11,7 @@ interface eachCommand{
     description:string
     test: RegExp
     on: keyof ClientEvents
+    noPrefixMatch?: boolean
     execute: (options: eachCommandParamOptions) => any
 }
 
