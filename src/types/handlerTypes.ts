@@ -18,5 +18,6 @@ interface eachCommand{
 type commands = eachCommand[]
 
 export {
-    commands as commandsType
+    commands as commandsType,
+    eachCommandParamOptions
 }
