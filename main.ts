@@ -1,4 +1,5 @@
 import { Client, Intents, Permissions } from 'discord.js'
+import Handler from './src/handler.js'
 
 /**
  * if i don't specify the file extension, it won't work after compiled (but this works perfectly in ts)
@@ -13,9 +14,6 @@ const bot = new Client({
     partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 })
 
-bot.on('ready',client=>{
-    console.log(`Logged in as ${client.user.username}#${client.user.discriminator}`)
-})
-
+const handler = new Handler(bot)
 
 bot.login(config.token)
