@@ -46,7 +46,12 @@ export default class Handler {
 
             command.execute(paramOptions,next)
 
-            if(!isContinue) break
+            if(isContinue){
+                isContinue = false
+                continue
+            }
+
+            break
         }
     }
 }
