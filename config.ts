@@ -1,9 +1,10 @@
 interface configData {
     token:string        
     prefix:string       
-    botOwner:string     // Owner Discord ID
-    ownerName:string    // Anything you want for credit
-    NASAAPIKey:string   // For APOD Command. https://api.nasa.gov/
+    botOwner:string         // Owner Discord ID
+    ownerName:string        // Anything you want for credit
+    NASAAPIKey:string       // For APOD Command. https://api.nasa.gov/
+    accountKeyPath:string   // Firebase account key path ("./accountkey.json" for example)
 }
 
 /**
@@ -15,7 +16,8 @@ const config:configData = {
     prefix: process.env.PREFIX,
     botOwner: process.env.BOTOWNER,
     ownerName: process.env.OWNERNAME,
-    NASAAPIKey: process.env.NASAAPIKEY
+    NASAAPIKey: process.env.NASAAPIKEY,
+    accountKeyPath: process.env.ACCOUNTKEYPATH
 }
 
 export default config
