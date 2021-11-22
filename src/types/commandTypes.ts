@@ -3,6 +3,7 @@ import {Client, Message, ClientEvents} from 'discord.js'
 interface eachCommandParamOptions {
     client: Client
     msg: Message
+    prefix: string
 }
 
 type next = () => void
@@ -20,5 +21,6 @@ type commands = eachCommand[]
 
 export {
     commands as commandsType,
-    eachCommandParamOptions
+    eachCommandParamOptions,
+    eachCommand
 }

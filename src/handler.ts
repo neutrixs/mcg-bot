@@ -32,7 +32,8 @@ export default class Handler {
         const contentNoPrefix = msg.content.substr(this.prefix.length)
         const paramOptions:eachCommandParamOptions = {
             client:this.client,
-            msg:msg
+            msg:msg,
+            prefix:this.prefix
         }
 
         let isContinue:boolean = false
