@@ -16,6 +16,6 @@ const bot = new Client({
 })
 
 const handler = new Handler(bot)
-const database = new firebaseLoader()
+const database = new firebaseLoader(bot)
 
 bot.login(config.token)
