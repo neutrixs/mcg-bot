@@ -8,6 +8,8 @@ import firebaseLoader from './src/firebaseLoader.js'
 
 import config from './config.js'
 
+import defaultCommands from './src/defaultCommands/loader.js'
+
 const intentsAll = Object.values(Intents.FLAGS).reduce((acc, p) => acc | p, 0)
 
 const bot = new Client({
@@ -17,5 +19,7 @@ const bot = new Client({
 
 const handler = new Handler(bot)
 const database = new firebaseLoader(bot)
+
+handler.addCommands(defaultCommands)
 
 bot.login(config.token)
