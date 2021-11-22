@@ -31,5 +31,96 @@ export default class database{
 
     private clientOnReady(clientData:Client<true>){
         this.clientID = clientData.user.id
+        this.firestoreListenerStart()
+    }
+
+    private firestoreListenerStart(){
+        const thisClientCollection = this.DB.collection(this.clientID)
+
+        thisClientCollection.doc('cc').onSnapshot(async snapshot=>{
+            const dataAny:any = snapshot.data()     // any because otherwise it won't work
+            const data:customCommand = dataAny
+
+            if(data?.ccdata?.Data.length === undefined){
+                const templateData:customCommand = {
+                    ccdata: {
+                        Data: []
+                    }
+                }
+
+                await thisClientCollection.doc('cc').set(templateData)
+                return
+            }
+
+            this.customCommands = data
+        })
+
+        thisClientCollection.doc('customprefix').onSnapshot(async snapshot=>{
+            const dataAny:any = snapshot.data()
+            const data:customPrefixType = dataAny
+
+            if(!data?.prefixdata){
+                const templateData:customPrefixType = {
+                    prefixdata: {}
+                }
+
+                await thisClientCollection.doc('customprefix').set(templateData)
+                return
+            }
+
+            this.customPrefix = data
+        })
+
+        thisClientCollection.doc('reactionroles').onSnapshot(async snapshot=>{
+            const dataAny:any = snapshot.data()
+            const data:reactionRolesType = dataAny
+
+            if(!data?.reactionRoles){
+                const templateData:reactionRolesType = {
+                    reactionRoles:{}
+                }
+
+                await thisClientCollection.doc('reactionroles').set(templateData)
+                return
+            }
+
+            this.reactionRoles = data
+        })
+
+        thisClientCollection.doc('status').onSnapshot(async snapshot=>{
+            const dataAny:any = snapshot.data()
+            const data:statusType = dataAny
+
+            if(data?.status?.length === undefined){
+                const templateData:statusType = {
+                    status:[]
+                }
+
+                await thisClientCollection.doc('status').set(templateData)
+                return
+            }
+
+            this.status = data
+        })
+
+        interface statusOnInterface {
+            statusOn:boolean
+        }
+
+        thisClientCollection.doc('statuson').onSnapshot(async snapshot=>{
+            const dataAny:any = snapshot.data()
+            const data:statusOnInterface = dataAny
+
+            if(data?.statusOn === undefined){
+                const templateData:statusOnInterface = {
+                    statusOn: false
+                }
+
+                await thisClientCollection.doc('statuson').set(templateData)
+                return
+            }
+
+            this.statusEnabled = data.statusOn
+        })
     }
 }
