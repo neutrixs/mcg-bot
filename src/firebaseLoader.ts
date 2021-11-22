@@ -1,4 +1,4 @@
-import firebaseAdmin from 'firebase-admin'
+import firebaseAdmin from 'firebase-admin'      // it's a commonjs module so it's imported like this (or else it won't work)
 import config from '../config.js'
 import { customCommand, customPrefixType, reactionRolesType, statusType } from './types/DBTypes'
 
