@@ -1,5 +1,5 @@
 import { Client, Message } from "discord.js"
-import { commandsType, eachCommandParamOptions } from "./types/handlerTypes"
+import { commandsType, eachCommandParamOptions } from "./types/commandTypes"
 import config from '../config.js'
 
 export default class Handler {
