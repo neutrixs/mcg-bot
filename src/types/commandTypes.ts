@@ -4,6 +4,7 @@ interface eachCommandParamOptions {
     client: Client
     msg: Message
     prefix: string
+    listCommands: eachCommand[]
 }
 
 type next = () => void

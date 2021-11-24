@@ -33,7 +33,8 @@ export default class Handler {
         const paramOptions:eachCommandParamOptions = {
             client:this.client,
             msg:msg,
-            prefix:this.prefix
+            prefix:this.prefix,
+            listCommands:this.commands
         }
 
         let isContinue:boolean = false
