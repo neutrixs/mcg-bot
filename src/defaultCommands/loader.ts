@@ -1,5 +1,6 @@
 import { commandsType } from '../types/commandTypes'
 import {say, helpSay} from './cmds/say.js'
+import {help} from './cmds/help.js'
 
 const defaultCommands:commandsType = [
     {
@@ -10,6 +11,13 @@ const defaultCommands:commandsType = [
         helpCategory: 'Managing messages',
         helpMessage: helpSay,
         execute: say
+    },
+    {
+        name:'help',
+        description:'come on it\'s obvious',
+        on: 'messageCreate',
+        test: /^(help|h)/,
+        execute:help
     }
 ]
 
