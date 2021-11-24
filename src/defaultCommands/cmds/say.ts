@@ -1,3 +1,4 @@
+import { MessageOptions } from 'discord.js'
 import { eachCommand } from "../../types/commandTypes";
 
 const say:eachCommand['execute'] = function(options){
@@ -49,4 +50,15 @@ const say:eachCommand['execute'] = function(options){
     })
 }
 
-export default say
+const helpSay:MessageOptions = {
+    embeds:[
+        {
+            title:'Say Command'
+        }
+    ]
+}
+
+export {
+    say,
+    helpSay
+}
