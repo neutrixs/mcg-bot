@@ -1,4 +1,4 @@
-import {Client, Message, ClientEvents} from 'discord.js'
+import {Client, Message, ClientEvents, MessagePayload} from 'discord.js'
 
 interface eachCommandParamOptions {
     client: Client
@@ -14,6 +14,8 @@ interface eachCommand{
     test: RegExp
     on: keyof ClientEvents
     noPrefixMatch?: boolean
+    helpCategory?: string
+    helpMessage?: MessagePayload
     execute: (options: eachCommandParamOptions, next?:next) => any
 }
 
